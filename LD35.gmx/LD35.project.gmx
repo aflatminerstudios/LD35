@@ -16,9 +16,12 @@
     <script>scripts\scrIsLeftPressed.gml</script>
     <script>scripts\scrIsDownPressed.gml</script>
     <script>scripts\scrIsRightPressed.gml</script>
+    <script>scripts\scrChooseDir.gml</script>
+    <script>scripts\scrEucDist.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\objDog</object>
+    <object>objects\objCanCollide</object>
     <object>objects\objSheep</object>
   </objects>
   <rooms name="rooms">
