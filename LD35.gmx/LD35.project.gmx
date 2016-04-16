@@ -8,6 +8,11 @@
   <sprites name="sprites">
     <sprite>sprites\sprDog</sprite>
     <sprite>sprites\sprBlock</sprite>
+    <sprites name="Nazca Pictures">
+      <sprite>sprites\sprNazcaOval</sprite>
+      <sprite>sprites\sprNazcaDonut</sprite>
+      <sprite>sprites\sprNazcaA</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -18,11 +23,14 @@
     <script>scripts\scrIsRightPressed.gml</script>
     <script>scripts\scrChooseDir.gml</script>
     <script>scripts\scrEucDist.gml</script>
+    <script>scripts\scrGetPicturePercent.gml</script>
+    <script>scripts\scrDisplayText.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\objDog</object>
     <object>objects\objCanCollide</object>
     <object>objects\objSheep</object>
+    <object>objects\objNazcaPicture</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomTest</room>
