@@ -8,6 +8,7 @@
   <sprites name="sprites">
     <sprite>sprites\sprDog</sprite>
     <sprite>sprites\sprBlock</sprite>
+    <sprite>sprites\sprNazcaOval</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -20,6 +21,7 @@
   <objects name="objects">
     <object>objects\objDog</object>
     <object>objects\objSheep</object>
+    <object>objects\objNazcaPicture</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomTest</room>
