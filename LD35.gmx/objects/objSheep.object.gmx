@@ -636,6 +636,7 @@ with (objSheep) {
 
 if (!findScared &amp;&amp; random(1) &lt; unscareChance) {
   sheep.scared = false;
+  sheep.barkScared = false;
   distMult = 1 + random(1);
 }
 
@@ -862,7 +863,7 @@ if (coll != noone) {
 
 var dogColl = collision_circle(x, y, scareDist, objDog, false, true);
 
-if (dogColl != noone) {
+if (dogColl != noone &amp;&amp; !dogColl.sneaking) {
   nearDog = true;
   scared = true;
 } else {
@@ -900,15 +901,15 @@ if (barkColl != noone) {
             <kind>1</kind>
             <string>///REDO LATER: Keep sheep on screen
 
-var newx = x + hspeed;
-var newy = y + vspeed;
+var newx = phy_position_x + phy_speed_x;
+var newy = phy_position_y + phy_speed_y;
 
 if (newx &lt; 0 || newx &gt; room_width) {
-  hspeed *= -1;
+  phy_speed_x *= -1;
 }
 
 if (newy &lt; 0 || newy &gt; room_height) {
-  vspeed *= -1;
+  phy_speed_y *= -1;
 }
 </string>
           </argument>

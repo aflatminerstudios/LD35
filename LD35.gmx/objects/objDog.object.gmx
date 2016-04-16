@@ -28,9 +28,15 @@
             <string>///Setup default variables
 
 moveSpeed = room_speed / 6;
+baseSpeed = moveSpeed;
 
 canBark = true;
 
+maxSprint = 100;
+currentSprint = maxSprint;
+sprinting = false;
+
+sneaking = false;
 </string>
           </argument>
         </arguments>
@@ -104,6 +110,103 @@ if (scrIsLeftPressed()) {
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///REDO:  Keep within boundaries
+
+
+var newx = phy_position_x + phy_speed_x;
+var newy = phy_position_y + phy_speed_y;
+
+if (newx &lt; (-1 * sprite_width) || newx &gt; (room_width + sprite_width)) {
+  phy_speed_x *= -1;
+}
+
+if (newy &lt; (-1 * sprite_height) || newy &gt; (room_height + sprite_height)) {
+  phy_speed_y *= -1;
+}
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Sprint handler
+if (!sprinting &amp;&amp; currentSprint &lt; maxSprint) {
+  currentSprint++;
+} else if (sprinting) {
+  if (currentSprint &gt; 0 &amp;&amp; keyboard_check(vk_control)) {
+    currentSprint--;
+  } else {
+    sprinting = false;
+    moveSpeed = baseSpeed;
+  }
+} else {
+  if (keyboard_check(vk_control) &amp;&amp; currentSprint &gt; (0.2 * maxSprint)) {
+    sprinting = true;
+    moveSpeed *= 2;
+  }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Sneak handling
+if (sneaking &amp;&amp; !keyboard_check(vk_shift)) {
+  sneaking = false;
+} else if (!sneaking &amp;&amp; keyboard_check(vk_shift)) {
+  sneaking = true;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="4" ename="objCanCollide">
       <action>
@@ -123,6 +226,43 @@ if (scrIsLeftPressed()) {
           <argument>
             <kind>1</kind>
             <string>///Empty
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draws indicators for dog stuff
+
+var color = c_green;
+
+if (currentSprint &lt;= (0.2 * maxSprint)) {
+  color = c_red;    
+}
+
+draw_text_color(100, 25, string(currentSprint) + " / " + string(maxSprint), color, color, color, color, 100);
+
+if (canBark) {
+  draw_text_color(300, 25, "Can bark!", c_green, c_green, c_green, c_green, 100);
+} else {
+  draw_text_color(300, 25, "Can't bark", c_red, c_red, c_red, c_red, 100);
+}
 </string>
           </argument>
         </arguments>
