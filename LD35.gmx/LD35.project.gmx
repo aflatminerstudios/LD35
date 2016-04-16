@@ -30,11 +30,13 @@
     <script>scripts\scrEucDist.gml</script>
     <script>scripts\scrGetPicturePercent.gml</script>
     <script>scripts\scrDisplayText.gml</script>
+    <script>scripts\scrNormalizeVector.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\objDog</object>
     <object>objects\objCanCollide</object>
     <object>objects\objSheep</object>
+    <object>objects\objSheepBackup</object>
     <object>objects\objNazcaPicture</object>
     <object>objects\objGameControl</object>
     <object>objects\objGlobals</object>
