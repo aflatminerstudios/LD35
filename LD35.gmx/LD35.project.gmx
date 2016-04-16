@@ -47,6 +47,10 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\roomTest</room>
+    <room>rooms\roomTitle</room>
+    <room>rooms\roomCredits</room>
+    <room>rooms\roomInstructions</room>
+    <room>rooms\roomGameOver</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
