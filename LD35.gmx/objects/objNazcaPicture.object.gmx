@@ -8,7 +8,7 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="3" enumb="0">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -27,7 +27,13 @@
             <kind>1</kind>
             <string>/// Count the number of sheep inside the picture
 var sheepPercentage = scrGetPicturePercent(self.id);
-show_debug_message("Percentage sheep inside: " + string(sheepPercentage));
+var infoString = "Sheep Inside: " + string(sheepPercentage) + "%";
+
+// Display in log
+//show_debug_message(infoString);
+
+// Display onscreen
+scrDisplayText(790, 10, infoString, -1, fa_right, fa_top);
 </string>
           </argument>
         </arguments>
