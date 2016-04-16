@@ -5,9 +5,20 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\sprDog</sprite>
+  </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scrIsUpPressed.gml</script>
+    <script>scripts\scrIsLeftPressed.gml</script>
+    <script>scripts\scrIsDownPressed.gml</script>
+    <script>scripts\scrIsRightPressed.gml</script>
+  </scripts>
+  <objects name="objects">
+    <object>objects\objDog</object>
+  </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
   </rooms>
