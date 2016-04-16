@@ -70,6 +70,10 @@ steeringY = phy_speed_y;
 
 closeDist = 50;
 
+barkScared = false;
+barkDist = scareDist * 2;
+
+nearBark = false;
 
 </string>
           </argument>
@@ -620,8 +624,8 @@ with (objSheep) {
   var dist = scrEucDist(sheep, id);
   var dir = point_direction(sheep.x, sheep.y, x, y);
   
-    if ((id != sheep.id) &amp;&amp; (dist &lt; global.maxDist) &amp;&amp; (abs(dir - sheep.direction) &lt; 90)) {
-        if (nearDog) {          
+    if ((id != sheep.id) &amp;&amp; (dist &lt; global.maxDist)) {// &amp;&amp; (abs(dir - sheep.direction) &lt; 90)) {
+        if (nearDog || nearBark) {          
           if (random(1) &lt; scareChance) {
             sheep.scared = true;
           }
@@ -632,6 +636,7 @@ with (objSheep) {
 
 if (!findScared &amp;&amp; random(1) &lt; unscareChance) {
   sheep.scared = false;
+  distMult = 1 + random(1);
 }
 
 
@@ -653,6 +658,25 @@ if (scared) {
   fleeSteeringX = (desiredVec[0] * maxSpeed) - phy_speed_x;
   fleeSteeringY = (desiredVec[1] * maxSpeed) - phy_speed_y;
 
+
+  
+  ////////////////////////Flee bark///////////////////////  
+  if (barkScared) {
+    var bark = instance_find(objDog, 0);
+    
+    dX = x - bark.x;
+    dY = y - bark.y;
+    
+    
+    var desiredVec = scrNormalizeVector(dX, dY);
+    barkSteeringX = (desiredVec[0] * maxSpeed * 2) - phy_speed_x;
+    barkSteeringY = (desiredVec[1] * maxSpeed * 2) - phy_speed_y;  
+  } else {
+    barkSteeringX = 0;
+    barkSteeringY = 0;
+  }  
+  
+  
   /////////////////////////////Get info on flock///////////////////////  
   var centerX = 0;
   var centerY = 0;
@@ -692,6 +716,9 @@ if (scared) {
   if (flockCount &gt; 0) {
     centerX /= flockCount;
     centerY /= flockCount;
+  } else {
+    centerX = x;
+    centerY = y;
   }
   
   if (moveCount &gt; 0) {
@@ -702,14 +729,18 @@ if (scared) {
   
   /////////////////////////////Steer to center of local flock///////////////////////  
   
-  dX = centerX - x;
-  dY = centerY - y;
-  
-  
-  var desiredVec = scrNormalizeVector(dX, dY);
-  centerSteeringX = (desiredVec[0] * maxSpeed) - phy_speed_x;
-  centerSteeringY = (desiredVec[1] * maxSpeed) - phy_speed_y;
-  
+  if (flockCount &gt; 0) {
+    dX = centerX - x;
+    dY = centerY - y;
+    
+    
+    var desiredVec = scrNormalizeVector(dX, dY);
+    centerSteeringX = (desiredVec[0] * maxSpeed * 0.9) - phy_speed_x;
+    centerSteeringY = (desiredVec[1] * maxSpeed * 0.9) - phy_speed_y;
+  } else {
+    centerSteeringX = 0;
+    centerSteeringY = 0;
+  }
   /////////////////////////////Steer to average move of local flock///////////////////////  
   /*dX = moveX - x;
   dY = moveY - y;
@@ -759,8 +790,8 @@ if (scared) {
 
   
   ///////////////Calculate final///////////////////////////////////////////////
-  steeringX = fleeSteeringX + centerSteeringX;
-  steeringY = fleeSteeringY + centerSteeringY;
+  steeringX = fleeSteeringX + centerSteeringX + barkSteeringX;
+  steeringY = fleeSteeringY + centerSteeringY + barkSteeringY;
   phy_speed_x = phy_speed_x + steeringX;
   phy_speed_x = min(abs(phy_speed_x), maxSpeed) * sign(phy_speed_x);
   phy_speed_y = phy_speed_y + steeringY;
@@ -827,7 +858,7 @@ if (coll != noone) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Check if near dog
+            <string>///Check if near dog or bark
 
 var dogColl = collision_circle(x, y, scareDist, objDog, false, true);
 
@@ -836,6 +867,16 @@ if (dogColl != noone) {
   scared = true;
 } else {
   nearDog = false;
+}
+
+var barkColl = collision_circle(x, y, barkDist, objBark, false, true);
+
+if (barkColl != noone) {
+  nearBark = true;
+  scared = true;
+  barkScared = true;
+} else {
+  nearBark = false;
 }
 </string>
           </argument>
@@ -917,6 +958,70 @@ if (scared) {
   sprite_index = sprScared;
 } else {
   sprite_index = sprSheepPlaceholder;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Drift apart slightly if not scared
+
+if (!scared) {
+  
+  var sheep = self.id;
+  
+  var nearSheep;
+  var numNear = 0;
+  
+  with (objSheep) {
+    var dist = scrEucDist(self.id, sheep);
+    if (sheep != self.id &amp;&amp; dist &lt; sprite_width * 1.2) {
+      nearSheep[numNear++] = self.id;        
+    }
+  }
+  
+  fleeSteeringX = 0;
+  fleeSteeringY = 0;
+  
+  if (numNear &gt; 0) {
+    for (var i = 0; i &lt; numNear; ++i) {
+      var dog = instance_find(objDog, 0);
+      
+      var dX = x - nearSheep[i].x;
+      var dY = y - nearSheep[i].y;
+       
+      
+      var desiredVec = scrNormalizeVector(dX, dY);
+      fleeSteeringX += (desiredVec[0] * baseSpeed) - phy_speed_x;
+      fleeSteeringY += (desiredVec[1] * baseSpeed) - phy_speed_y;  
+    }
+  } else {
+    phy_speed_x = 0;
+    phy_speed_y = 0;
+  }
+  
+  steeringX = fleeSteeringX;
+  steeringY = fleeSteeringY;
+  phy_speed_x = phy_speed_x + steeringX;
+  phy_speed_x = min(abs(phy_speed_x), baseSpeed) * sign(phy_speed_x);
+  phy_speed_y = phy_speed_y + steeringY;
+  phy_speed_y = min(abs(phy_speed_y), baseSpeed) * sign(phy_speed_y);
+  
 }
 </string>
           </argument>
