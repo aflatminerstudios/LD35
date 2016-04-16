@@ -7,10 +7,10 @@
   <coltolerance>0</coltolerance>
   <sepmasks>-1</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>107</bbox_left>
-  <bbox_right>687</bbox_right>
-  <bbox_top>67</bbox_top>
-  <bbox_bottom>527</bbox_bottom>
+  <bbox_left>163</bbox_left>
+  <bbox_right>637</bbox_right>
+  <bbox_top>84</bbox_top>
+  <bbox_bottom>511</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
@@ -20,6 +20,6 @@
   <width>800</width>
   <height>600</height>
   <frames>
-    <frame index="0">images\sprNazcaOval_0.png</frame>
+    <frame index="0">images\sprNazcaA_0.png</frame>
   </frames>
 </sprite>
