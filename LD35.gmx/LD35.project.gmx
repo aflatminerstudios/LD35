@@ -7,6 +7,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\sprDog</sprite>
+    <sprite>sprites\sprBlock</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -18,9 +19,10 @@
   </scripts>
   <objects name="objects">
     <object>objects\objDog</object>
+    <object>objects\objSheep</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
+    <room>rooms\roomTest</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
