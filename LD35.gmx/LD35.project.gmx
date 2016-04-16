@@ -8,13 +8,16 @@
   <sprites name="sprites">
     <sprite>sprites\sprDog</sprite>
     <sprite>sprites\sprBlock</sprite>
+    <sprite>sprites\sprOtherBlock</sprite>
     <sprites name="Nazca Pictures">
       <sprite>sprites\sprNazcaOval</sprite>
       <sprite>sprites\sprNazcaDonut</sprite>
       <sprite>sprites\sprNazcaA</sprite>
     </sprites>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\objBaseBackground</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scrIsUpPressed.gml</script>

@@ -33,7 +33,7 @@ maxSpeed = room_speed / 6;
 
 distMult = 1.5;
 
-dogMult = 5;
+dogMult = 6;
 scareDist = sprite_width * dogMult;
 
 direction = irandom(360);
@@ -41,6 +41,16 @@ wanderDir = random_range(-5,5);
 alarm[0] = floor(random(5) * room_speed);
 
 scared = false;
+nearDog = false;
+
+scareChance = 0.8;
+unscareChance = 0.5;
+
+//For movement code 3
+targetX = x;
+targetY = y;
+
+speedDist = scareDist;
 </string>
           </argument>
         </arguments>
@@ -90,8 +100,179 @@ alarm[0] = floor(random(5) * room_speed);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Determine direction and move
+            <string>///REMOVED: New herding code
+/*
+var sheep = self.id;
+var findScared = false;
 
+with (objSheep) {  
+  var dist = scrEucDist(sheep, id);
+  var dir = point_direction(sheep.x, sheep.y, x, y);
+  
+    if ((id != sheep.id) &amp;&amp; (dist &lt; global.maxDist) &amp;&amp; (abs(dir - sheep.direction) &lt; 90)) {
+        if (nearDog) {          
+          //if (random(1) &lt; scareChance) {
+            sheep.scared = true;
+          //}
+          findScared = true;
+        }
+    }  
+}
+
+if (!findScared &amp;&amp; random(1) &lt; unscareChance) {
+  sheep.scared = false;
+}
+
+
+if (scared) {
+
+  /////////////Movement based on local flock/////////////
+  var centerx = 0;
+  var centery = 0;
+  var flockCount = 0;
+  var cenDir;
+  
+  var directions = 0;
+  var speeds = 0;
+  var moveCount = 0;
+  
+  with (objSheep) {
+    //Only consider if within maxDist of main sheep, and is not same sheep
+    var dist = scrEucDist(sheep, id);
+    var dir = point_direction(sheep.x, sheep.y, x, y);
+    
+    //Based on center of flock
+    if ((id != sheep.id) &amp;&amp; (dist &lt; global.maxDist)) {// &amp;&amp; (abs(dir - sheep.direction) &lt; 90)) {
+      centerx += x;
+      centery += y;
+      flockCount++;      
+    }  
+    
+    //This is a little weird, because some are affected by old direction and some by new
+    //Come back to this if we have time and see if we can figure this out without making
+    //it too time consuming
+    //Based on other sheep within local flock that are moving
+    if (speed &gt; 0) {
+      directions += direction;
+      speeds += speed;
+      moveCount++;
+    }
+  }
+  
+  if (flockCount &gt; 0) {
+    centerx /= flockCount;
+    centery /= flockCount;
+    cenDir = point_direction(x, y, centerx, centery);
+  }
+  
+  if (moveCount &gt; 0) {
+    directions /= moveCount;
+    speeds /= moveCount;
+  }
+  
+  //Try to avoid colliding with other sheep
+  var cirColl = collision_circle(x, y, (sprite_width * distMult), objSheep, false, true);
+  
+  var collDir;
+  
+  if (cirColl != noone) {
+    distMult = random(1) + 1;
+    collDir = point_direction(cirColl.x, cirColl.y, x, y);
+  }
+  
+  var trigger = false;
+  if (flockCount &gt; 0) {
+    trigger = true;
+    if (moveCount &gt; 0) {
+      if (cirColl != noone) {
+        direction = (cenDir + directions + collDir) / 3;
+      } else {
+        direction = (cenDir + directions) / 2;
+      }
+    } else if (cirColl != noone) {
+      direction = (cenDir + collDir) / 2;
+    } else {
+      direction = cenDir;
+    }
+  } else if (cirColl != noone) {
+    direction = collDir;
+    trigger = true;
+  }
+  
+  
+  var coll = instance_place(x+hspeed, y + vspeed, objCanCollide);
+
+  if (coll != noone) {
+    direction = point_direction(coll.x, coll.y, x, y);
+    speed = baseSpeed;
+    //speed = 0;
+    trigger = true;
+  }
+  
+  ////////////////////////////////////////////////////////////////////////////////////
+  /////////////Movement based on dog/////////////
+  var dog = instance_find(objDog, 0);
+  
+  //Where the sheep predicts the dog shall be
+  var dogDist = scrEucDist(self.id, dog);
+  var updatesAhead = dogDist / maxSpeed;
+  var dX = (dog.x - dog.xprevious) * updatesAhead + dog.x;
+  var dY = (dog.y - dog.yprevious) * updatesAhead + dog.y;
+  
+  //Get direction to run from
+  var runDir = point_direction(dX, dY, x, y);
+  
+  //Figure out how fast to run and how much dog should influence their direction
+  var scareMult = 1 - dogDist / scareDist;
+  
+  if (scareMult &lt; 0.1) {
+    scareMult = 0.1;
+  }  
+  
+  
+  flockMult = 1 - scareMult;
+  
+  
+  
+  
+  if (trigger) {
+    direction = (flockMult * direction + scareMult * runDir);
+  } else {
+    direction = runDir;
+  }
+  speed = maxSpeed * scareMult;
+  if (speed &lt; baseSpeed) {
+    speed = baseSpeed;
+  }
+  scared = true;
+
+} else {
+  speed = 0;
+}
+
+*/
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///REMOVED - Determine direction and move
+/*
 
 if (scared) {
   var temp = scrBasicFlock(self.id);
@@ -119,7 +300,7 @@ if (scared) {
   if (place_meeting(x,y+vspeed,objCanCollide)) {
     vspeed=0;
   }*/
-  
+/*  
   } else {
   speed = 0;  
 }
@@ -169,7 +350,249 @@ if (dogColl != noone) {
 }
 
 
+*/
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Flock Herding/Herd Flocking code attempt 3
+var sheep = self.id;
+var findScared = false;
 
+with (objSheep) {  
+  var dist = scrEucDist(sheep, id);
+  var dir = point_direction(sheep.x, sheep.y, x, y);
+  
+    if ((id != sheep.id) &amp;&amp; (dist &lt; global.maxDist) &amp;&amp; (abs(dir - sheep.direction) &lt; 90)) {
+        if (nearDog) {          
+          //if (random(1) &lt; scareChance) {
+            sheep.scared = true;
+          //}
+          findScared = true;
+        }
+    }  
+}
+
+if (!findScared &amp;&amp; random(1) &lt; unscareChance) {
+  sheep.scared = false;
+}
+
+
+if (scared) {
+
+  /////////////Movement based on local flock/////////////
+  var centerX = 0;
+  var centerY = 0;
+  var flockCount = 0;
+  
+  var moveX = 0;
+  var moveY = 0;
+  var moveCount = 0;
+  
+  with (objSheep) {
+    //Only consider if within maxDist of main sheep, and is not same sheep
+    var dist = scrEucDist(sheep, id);
+    var dir = point_direction(sheep.x, sheep.y, x, y);
+    
+    //Based on center of flock
+    if ((id != sheep.id) &amp;&amp; (dist &lt; global.maxDist)) {// &amp;&amp; (abs(dir - sheep.direction) &lt; 90)) {
+      centerX += x;
+      centerY += y;
+      flockCount++;      
+    }  
+    
+    if (targetX != x || targetY != y) {
+      moveX += targetX;
+      moveY += targetY;
+      moveCount++;
+    }
+  }
+  
+  if (flockCount &gt; 0) {
+    centerX /= flockCount;
+    centerY /= flockCount;
+  }
+  
+  if (moveCount &gt; 0) {
+    moveX /= moveCount;
+    moveY /= moveCount;
+  }
+  
+  //Try to avoid colliding with other sheep
+  var cirColl = collision_circle(x, y, (sprite_width * distMult), objSheep, false, true);
+  
+  var collX;
+  var collY;
+  
+  if (cirColl != noone) {
+    distMult = random(1) + 1;
+    collDir = point_direction(cirColl.x, cirColl.y, x, y);
+    collDist = point_distance(cirColl.x, cirColl.y, x, y);
+    collX = lengthdir_x(collDist, collDir) + x;
+    collY = lengthdir_y(collDist, collDir) + y;
+  }
+  
+  var trigger = false;
+  if (flockCount &gt; 0) {
+    trigger = true;
+    if (moveCount &gt; 0) {
+      if (cirColl != noone) {
+        dX = (centerX + moveX + collX) / 3;
+        dY = (centerY + moveY + collY) / 3;
+      } else {
+        dX = (centerX + moveX) / 2;
+        dY = (centerY + moveY) / 2;
+      }
+    } else if (cirColl != noone) {
+      dX = (centerX + collX) / 2;
+      dY = (centerY + collY) / 2;      
+    } else {
+      dX = centerX;
+      dY = centerY;
+    }
+  } else if (cirColl != noone) {
+    dX = collX;
+    dY = collY;
+    trigger = true;
+  } else {
+    dX = x;
+    dY = y;
+  }
+  
+
+if (collision_line(x, y, dX, dY, objCanCollide, false, true)) {
+  dX += random_range(-50, 50);
+  dY += random_range(-50, 50);
+}
+  //direction = point_direction(dX, dY, x, y);
+  
+  ////////////////////////////////////////////////////////////////////////////////////
+  /////////////Movement based on dog/////////////
+  var dog = instance_find(objDog, 0);
+  
+  //Where the sheep predicts the dog shall be
+  var dogDist = scrEucDist(self.id, dog);
+  var updatesAhead = dogDist / maxSpeed;
+  var dogFutureX = (dog.x - dog.xprevious) * updatesAhead + dog.x;
+  var dogFutureY = (dog.y - dog.yprevious) * updatesAhead + dog.y;
+  
+  //x &amp; y dist from dog
+  var dogXDist = x - dog.x;
+  var dogYDist = y - dog.y; 
+
+  var ratio = dogDist / scareDist;
+  
+  dogTargetX = x + (dogXDist * 1/ratio);
+  dogTargetY = y + (dogYDist * 1/ratio);
+  
+  //Figure out how fast to run and how much dog should influence their direction
+  var scareMult = 1 - ratio;  
+  if (scareMult &lt; 0.1) {
+    scareMult = 0.1;
+  }      
+  flockMult = 1 - scareMult;
+  
+  
+  
+  
+  if (trigger) {
+    targetX = (flockMult * dX) + (scareMult * dogTargetX);
+    targetY = (flockMult * dY) + (scareMult * dogTargetY);
+  } else {
+    targetX = dogTargetX;
+    targetY = dogTargetY;
+  }
+    
+  scared = true;
+
+} else {
+  speed = 0;
+}
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Move based on target x &amp; y
+direction = point_direction(x, y, targetX, targetY);
+var dist = point_distance(x, y, targetX, targetY);
+speed = dist/speedDist * baseSpeed;
+
+
+var coll = instance_place(x+hspeed, y + vspeed, objCanCollide);
+
+if (coll != noone) {
+//  direction = point_direction(coll.x, coll.y, x, y);
+//  speed = baseSpeed;
+  speed = 0;
+  //trigger = true;
+}
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check if near dog
+
+var dogColl = collision_circle(x, y, scareDist, objDog, false, true);
+
+if (dogColl != noone) {
+  nearDog = true;
+  scared = true;
+} else {
+  nearDog = false;
+}
 </string>
           </argument>
         </arguments>
@@ -224,6 +647,33 @@ if (newy &lt; 0 || newy &gt; room_height) {
             <kind>1</kind>
             <string>///Change sprite direction
 image_angle = direction;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///TEMP: Change sprite based on if scared or not
+
+if (scared) {
+  sprite_index = sprOtherBlock;
+} else {
+  sprite_index = sprBlock;
+}
 </string>
           </argument>
         </arguments>
