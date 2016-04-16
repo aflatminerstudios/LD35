@@ -1,4 +1,4 @@
-///scrBasicFlock(sheep)
+/////scrBasicFlock(sheep)
 //return array [0] = x, [1] = y
 //-1 means no sheep within range
 

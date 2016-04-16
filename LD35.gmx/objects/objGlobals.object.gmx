@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Create globals
 
-global.maxDist = 150;
+global.maxDist = 100;
 </string>
           </argument>
         </arguments>
