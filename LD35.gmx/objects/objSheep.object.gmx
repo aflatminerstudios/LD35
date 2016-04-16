@@ -28,6 +28,46 @@
             <string>///Setup default variables
 
 baseSpeed = room_speed / 20;
+
+maxSpeed = room_speed / 6;
+
+distMult = 1.5;
+
+dogMult = 5;
+scareDist = sprite_width * dogMult;
+
+direction = irandom(360);
+wanderDir = random_range(-5,5);
+alarm[0] = floor(random(5) * room_speed);
+
+scared = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Change wander direction
+
+wanderDir = random_range(-5,5);
+
+alarm[0] = floor(random(5) * room_speed);
 </string>
           </argument>
         </arguments>
@@ -52,22 +92,138 @@ baseSpeed = room_speed / 20;
             <kind>1</kind>
             <string>///Determine direction and move
 
-var temp = scrChooseDir(self.id);
 
+if (scared) {
+  var temp = scrBasicFlock(self.id);
+  
+  //Go to the center of the sheep near this sheep, but try to avoid each other
+  if (temp[0] &gt;= 0 || temp[1] = 0) {
+    direction = point_direction(x, y, temp[0], temp[1]);
+    speed = baseSpeed;
+  } else {
+    speed = 0;
+  }
+  
+  //Don't actually collide with each other
+  var coll = instance_place(x+hspeed, y + vspeed, objCanCollide);
+  
+  if (coll != noone) {
+    direction = point_direction(coll.x, coll.y, x, y);
+    speed = baseSpeed;
+    //speed = 0;
+  }
+  
+  /*if (place_meeting(x+hspeed,y,objCanCollide)) {
+    hspeed=0;
+  }
+  if (place_meeting(x,y+vspeed,objCanCollide)) {
+    vspeed=0;
+  }*/
+  
+  } else {
+  speed = 0;  
+}
 
-if (temp[0] &gt;= 0 || temp[1] = 0) {
-  direction = point_direction(x, y, temp[0], temp[1]);
-  speed = baseSpeed;
+var dogColl = collision_circle(x, y, scareDist, objDog, false, true);
+
+if (dogColl != noone) {
+  
+  //Where the sheep predicts the dog shall be
+  var dogDist = scrEucDist(self.id, dogColl);
+  var updatesAhead = dogDist / maxSpeed;
+  var dX = (dogColl.x - dogColl.xprevious) * updatesAhead + dogColl.x;
+  var dY = (dogColl.y - dogColl.yprevious) * updatesAhead + dogColl.y;
+  
+  //Get direction to run from
+  var runDir = point_direction(dX, dY, x, y);
+  
+  //Figure out how fast to run and how much dog should influence their direction
+  var scareMult = 1 - dogDist / scareDist;
+  
+  if (scareMult &lt; 0) {
+    scareMult = 0;
+  } else if (scareMult &lt; 0.1) {
+    scareMult = 0.1;
+  }  
+  
+  
+  flockMult = 1 - scareMult;
+    
+  direction = (flockMult * direction + scareMult * runDir);
+  
+  speed = maxSpeed * scareMult;
+  scared = true;
+  direction += wanderDir;
 } else {
-  speed = 0;
+  
+  with (objSheep) {
+    var dist = scrEucDist(other.id, id);
+    if (dist &lt; global.maxDist) {
+      if (scared){ 
+        other.scared = true;
+      } 
+    }
+  }
+
+  scared = false;
 }
 
-if (place_meeting(x+hspeed,y,objCanCollide)) {
-  hspeed=0;
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///REDO LATER: Keep sheep on screen
+
+var newx = x + hspeed;
+var newy = y + vspeed;
+
+if (newx &lt; 0 || newx &gt; room_width) {
+  hspeed *= -1;
 }
-if (place_meeting(x,y+vspeed,objCanCollide)) {
-  vspeed=0;
+
+if (newy &lt; 0 || newy &gt; room_height) {
+  vspeed *= -1;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Change sprite direction
+image_angle = direction;
 </string>
           </argument>
         </arguments>

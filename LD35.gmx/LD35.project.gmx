@@ -21,7 +21,7 @@
     <script>scripts\scrIsLeftPressed.gml</script>
     <script>scripts\scrIsDownPressed.gml</script>
     <script>scripts\scrIsRightPressed.gml</script>
-    <script>scripts\scrChooseDir.gml</script>
+    <script>scripts\scrBasicFlock.gml</script>
     <script>scripts\scrEucDist.gml</script>
     <script>scripts\scrGetPicturePercent.gml</script>
     <script>scripts\scrDisplayText.gml</script>
@@ -31,6 +31,8 @@
     <object>objects\objCanCollide</object>
     <object>objects\objSheep</object>
     <object>objects\objNazcaPicture</object>
+    <object>objects\objGameControl</object>
+    <object>objects\objGlobals</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomTest</room>
