@@ -27,11 +27,9 @@
             <kind>1</kind>
             <string>///Setup default variables
 
-baseSpeed = room_speed / 60;
+baseSpeed = room_speed / 20;
 
-maxSpeed = room_speed / 20;
-
-maxAvoid = room_speed / 40;
+maxSpeed = room_speed / 6;
 
 distMult = 1.5;
 
@@ -63,14 +61,6 @@ wanderTime = 40;
 
 var rTime = random(wanderTime);
 alarm[1] = floor(rTime * room_speed);
-
-//For physics/vector movement
-steeringX = phy_speed_x;
-steeringY = phy_speed_y;
-
-closeDist = 50;
-
-
 </string>
           </argument>
         </arguments>
@@ -420,8 +410,8 @@ if (dogColl != noone) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///REMOVED:Flock Herding/Herd Flocking code attempt 3
-/*var sheep = self.id;
+            <string>///Flock Herding/Herd Flocking code attempt 3
+var sheep = self.id;
 var findScared = false;
 
 with (objSheep) {  
@@ -586,191 +576,7 @@ if (collision_line(x, y, dX, dY, objCanCollide, false, true)) {
 }
 
 
-*/
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Physics-based/vector-based steering behaviors
 
-var sheep = self.id;
-var findScared = false;
-
-/*var numNear = 0;
-var nearSheep;*/
-
-//Determine if scared
-with (objSheep) {  
-  var dist = scrEucDist(sheep, id);
-  var dir = point_direction(sheep.x, sheep.y, x, y);
-  
-    if ((id != sheep.id) &amp;&amp; (dist &lt; global.maxDist) &amp;&amp; (abs(dir - sheep.direction) &lt; 90)) {
-        if (nearDog) {          
-          if (random(1) &lt; scareChance) {
-            sheep.scared = true;
-          }
-          findScared = true;
-        }
-    }  
-}
-
-if (!findScared &amp;&amp; random(1) &lt; unscareChance) {
-  sheep.scared = false;
-}
-
-
-if (scared) {
-
-  //Reset steering
-  steeringX = 0;
-  steeringY = 0;
-  
-  ////////////////////////Flee dog///////////////////////
-  
-  var dog = instance_find(objDog, 0);
-  
-  var dX = x - dog.x;
-  var dY = y - dog.y;
-  
-  
-  var desiredVec = scrNormalizeVector(dX, dY);
-  fleeSteeringX = (desiredVec[0] * maxSpeed) - phy_speed_x;
-  fleeSteeringY = (desiredVec[1] * maxSpeed) - phy_speed_y;
-
-  /////////////////////////////Get info on flock///////////////////////  
-  var centerX = 0;
-  var centerY = 0;
-  var flockCount = 0;
-  
-  var moveX = 0;
-  var moveY = 0;
-  var moveCount = 0;
-  
-  with (objSheep) {
-    //Only consider if within maxDist of main sheep, and is not same sheep
-    var dist = scrEucDist(sheep, id);
-    var dir = point_direction(sheep.x, sheep.y, x, y);
-    
-    //Getcenter of flock
-    if ((id != sheep.id) &amp;&amp; (dist &lt; global.maxDist) &amp;&amp; (abs(dir - sheep.direction) &lt; 90)) {
-      centerX += x;
-      centerY += y;
-      flockCount++;      
-    }  
-    
-    //Get movement of flock
-/*    if (phy_speed_x != 0 || phy_speed_y != 0) {
-      show_debug_message(string(phy_speed_x) + ", " + string(phy_speed_y));
-      moveX += phy_speed_x;
-      moveY += phy_speed_y;
-      moveCount++;
-    }*/
-
-    /*//Get sheep within small area
-    if (dist &lt; sprite_width * distMult) {
-      nearSheep[numNear++] = self.id;
-    }*/
-    
-  }
-  
-  if (flockCount &gt; 0) {
-    centerX /= flockCount;
-    centerY /= flockCount;
-  }
-  
-  if (moveCount &gt; 0) {
-    moveX /= moveCount;
-    moveY /= moveCount;
-  }
-  
-  
-  /////////////////////////////Steer to center of local flock///////////////////////  
-  
-  dX = centerX - x;
-  dY = centerY - y;
-  
-  
-  var desiredVec = scrNormalizeVector(dX, dY);
-  centerSteeringX = (desiredVec[0] * maxSpeed) - phy_speed_x;
-  centerSteeringY = (desiredVec[1] * maxSpeed) - phy_speed_y;
-  
-  /////////////////////////////Steer to average move of local flock///////////////////////  
-  /*dX = moveX - x;
-  dY = moveY - y;
-    
-  var desiredVec = scrNormalizeVector(dX, dY);
-  moveSteeringX = (desiredVec[0] * maxSpeed) - phy_speed_x;
-  moveSteeringY = (desiredVec[1] * maxSpeed) - phy_speed_y;
-  */
-  ////////////////////////////Avoid other sheep//////////////////////////////
-  /*var minDist;
-  var minIndex;
-  if (numNear &gt; 0) {
-    minDist = scrEucDist(sheep, nearSheep[0]);
-    minIndex = 0;
-    for (var i = 1; i &lt; numNear; ++i) {
-      var curDist = scrEucDist(sheep, nearSheep[i]);
-      if (curDist &lt; minDist) {
-        minDist = curDist;
-        minIndex = i;
-      }
-    }
-  }
-  
-  var closest = nearSheep[minIndex];*/
-  /*
-  var length = point_distance(0, 0, phy_speed_x, phy_speed_y) * 2 / maxSpeed;
-  
-  var normalizedSpeed = scrNormalizeVector(phy_speed_x, phy_speed_y);
-  
-  var aheadX = phy_position_x + normalizedSpeed[0] * length;
-  var aheadY = phy_position_y + normalizedSpeed[1] * length;
-  
-  var coll = collision_line(x, y, aheadX, aheadY, objCanCollide, false, true);
-  
-  if (coll != noone) {
-    dX = aheadX - coll.x;
-    dY = aheadY - coll.y;
-    
-    
-    desiredVec = scrNormalizeVector(dX, dY);
-    avoidanceSteeringX = (desiredVec[0] * maxAvoid) - phy_speed_x;
-    avoidanceSteeringY = (desiredVec[1] * maxAvoid) - phy_speed_y;
-  } else {*/
-   // avoidanceSteeringX = 0;
-   // avoidanceSteeringY = 0;
-  //}
-
-  
-  ///////////////Calculate final///////////////////////////////////////////////
-  steeringX = fleeSteeringX + centerSteeringX;
-  steeringY = fleeSteeringY + centerSteeringY;
-  phy_speed_x = phy_speed_x + steeringX;
-  phy_speed_x = min(abs(phy_speed_x), maxSpeed) * sign(phy_speed_x);
-  phy_speed_y = phy_speed_y + steeringY;
-  phy_speed_y = min(abs(phy_speed_y), maxSpeed) * sign(phy_speed_y);
-
-  
-} else {
-  phy_speed_x = 0;
-  phy_speed_y = 0;
-}
 </string>
           </argument>
         </arguments>
@@ -792,7 +598,7 @@ if (scared) {
           <argument>
             <kind>1</kind>
             <string>///Move based on target x &amp; y
-/*direction = point_direction(x, y, targetX, targetY);
+direction = point_direction(x, y, targetX, targetY);
 var dist = point_distance(x, y, targetX, targetY);
 speed = dist/speedDist * baseSpeed;
 direction += meanderDir;
@@ -806,7 +612,7 @@ if (coll != noone) {
   //trigger = true;
 }
 
-*/
+
 </string>
           </argument>
         </arguments>
@@ -890,7 +696,7 @@ if (newy &lt; 0 || newy &gt; room_height) {
           <argument>
             <kind>1</kind>
             <string>///Change sprite direction
-image_angle = point_direction(0, 0, phy_speed_x, phy_speed_y);
+image_angle = direction;
 </string>
           </argument>
         </arguments>
@@ -923,43 +729,17 @@ if (scared) {
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="objCanCollide">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Empty
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
   </events>
-  <PhysicsObject>-1</PhysicsObject>
+  <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>
   <PhysicsObjectDensity>0.5</PhysicsObjectDensity>
   <PhysicsObjectRestitution>0.100000001490116</PhysicsObjectRestitution>
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
-  <PhysicsObjectLinearDamping>0</PhysicsObjectLinearDamping>
-  <PhysicsObjectAngularDamping>0</PhysicsObjectAngularDamping>
-  <PhysicsObjectFriction>0</PhysicsObjectFriction>
+  <PhysicsObjectLinearDamping>0.100000001490116</PhysicsObjectLinearDamping>
+  <PhysicsObjectAngularDamping>0.100000001490116</PhysicsObjectAngularDamping>
+  <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints>
-    <point>10,10</point>
-    <point>10,10</point>
-  </PhysicsShapePoints>
+  <PhysicsShapePoints/>
 </object>
