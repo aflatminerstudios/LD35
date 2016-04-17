@@ -34,6 +34,13 @@
     <sprite>sprites\sprBarkPlaceholder</sprite>
     <sprite>sprites\sprBarkLines</sprite>
     <sprite>sprites\sprCredits</sprite>
+    <sprites name="Clouds">
+      <sprite>sprites\sprCloudShadow1</sprite>
+      <sprite>sprites\sprCloudShadow2</sprite>
+      <sprite>sprites\sprCloudShadow3</sprite>
+      <sprite>sprites\sprCloudShadow4</sprite>
+    </sprites>
+
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
@@ -63,6 +70,11 @@
     <object>objects\objBarkVisible</object>
     <object>objects\objMiniPicture</object>
     <object>objects\objCredits</object>
+    <objects name="Clouds">
+      <object>objects\objCloudShadow</object>
+      <object>objects\objCloudGenerator</object>
+    </objects>
+
   </objects>
   <rooms name="rooms">
     <room>rooms\roomMain</room>
