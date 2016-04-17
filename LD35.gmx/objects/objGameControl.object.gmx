@@ -112,6 +112,42 @@ alarm[1] = room_speed;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Spawn sheep
+
+
+if (room != roomTest) {
+  for (var i = 0; i &lt; 50; ++i) {
+    var rX = floor(random_range(25, 760));
+    var rY = floor(random_range(52, 486));
+    
+    if (collision_circle(rX, rY, 10, objSheep, true, true) == noone) {
+      instance_create(rX, rY, objSheep);
+    } else {
+      --i;
+    }
+    show_debug_message(i);
+  }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="2" enumb="1">
       <action>
