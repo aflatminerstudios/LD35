@@ -6,6 +6,7 @@
   <NewExtensions/>
   <sounds name="sound">
     <sound>sound\sndBark</sound>
+    <sound>sound\sndLogoTheme</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sprDog</sprite>
@@ -40,6 +41,8 @@
       <sprite>sprites\sprCloudShadow3</sprite>
       <sprite>sprites\sprCloudShadow4</sprite>
     </sprites>
+    <sprite>sprites\sprTitleScreen</sprite>
+    <sprite>sprites\sprLogo</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
@@ -73,6 +76,8 @@
       <object>objects\objCloudShadow</object>
       <object>objects\objCloudGenerator</object>
     </objects>
+    <object>objects\objTitle</object>
+    <object>objects\objLogo</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomMain</room>
@@ -81,6 +86,7 @@
     <room>rooms\roomCredits</room>
     <room>rooms\roomInstructions</room>
     <room>rooms\roomGameOver</room>
+    <room>rooms\roomLogo</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
