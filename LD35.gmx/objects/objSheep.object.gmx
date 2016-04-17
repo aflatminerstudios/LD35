@@ -966,31 +966,6 @@ if (newy &lt; 52 ) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///REDO: Change sprite direction
-if (phy_speed_x != 0 || phy_speed_y != 0) {
-  image_angle = point_direction(0, 0, phy_speed_x, phy_speed_y) + 180;
-  show_debug_message(string(phy_speed_x) + ", " + string(phy_speed_y) + " = " + string(point_direction(0, 0, phy_speed_x, phy_speed_y)));
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///TEMP: Change sprite based on if scared or not
 
 if (scared) {
@@ -1104,6 +1079,31 @@ if (wandering &amp;&amp; !scared) {
   phy_speed_y = min(abs(phy_speed_y), maxSpeed) * sign(phy_speed_y);
 
   
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///REDO: Change sprite direction
+if (phy_speed_x != 0 || phy_speed_y != 0) {
+  image_angle = point_direction(0, 0, phy_speed_x, phy_speed_y) + 180;
+  //show_debug_message(string(phy_speed_x) + ", " + string(phy_speed_y) + " = " + string(point_direction(0, 0, phy_speed_x, phy_speed_y)));
 }
 </string>
           </argument>
