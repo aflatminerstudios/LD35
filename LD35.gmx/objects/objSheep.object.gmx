@@ -39,6 +39,7 @@ dogMult = 4;
 scareDist = sprite_width * dogMult;
 
 currentDir = irandom(360);
+changedSpriteDir = 999;
 meanderDir = random_range(-5,5);
 alarm[0] = floor(random(2) * room_speed);
 
@@ -724,14 +725,10 @@ if (scared) {
   var dX = x - dog.x;
   var dY = y - dog.y;
   var dogDist = scrEucDist(self.id, dog);//point_distance(x, x, dog.x, dog.x);
-  var factor = 1;  
-  if (dogDist &gt; slowingRadius &amp;&amp; dogDist &lt; scareDist) {
-   // factor = (scareDist - dogDist) / (scareDist - slowingRadius);      
-  }
   
   var desiredVec = scrNormalizeVector(dX, dY);
-  fleeSteeringX = (desiredVec[0] * maxSpeed * factor) - phy_speed_x;
-  fleeSteeringY = (desiredVec[1] * maxSpeed * factor) - phy_speed_y;
+  fleeSteeringX = (desiredVec[0] * maxSpeed) - phy_speed_x;
+  fleeSteeringY = (desiredVec[1] * maxSpeed) - phy_speed_y;
 
 
   
@@ -743,14 +740,10 @@ if (scared) {
     dY = y - bark.y;
     
     var barkD = scrEucDist(self.id, bark);//point_distance(x, x, dog.x, dog.x);
-    factor = 1;  
-    if (barkD &gt; barkSlowRadius &amp;&amp; barkD &lt; barkDist) {
-     // factor = (scareDist - barkD) / (barkDist - slowingRadius);      
-    }
     
     var desiredVec = scrNormalizeVector(dX, dY);
-    barkSteeringX = (desiredVec[0] * maxSpeed * 1.4 * factor) - phy_speed_x;
-    barkSteeringY = (desiredVec[1] * maxSpeed * 1.4 * factor) - phy_speed_y;  
+    barkSteeringX = (desiredVec[0] * maxSpeed * 1.4) - phy_speed_x;
+    barkSteeringY = (desiredVec[1] * maxSpeed * 1.4) - phy_speed_y;  
   } else {
     barkSteeringX = 0;
     barkSteeringY = 0;
@@ -1124,10 +1117,17 @@ if (phy_speed_x != 0 || phy_speed_y != 0) {
   if (sprite_index != sprSheepStatic) {
     sprite_index = sprSheepStatic;
   }
-  
+    
   var indexCalc = floor(((currentDir / 11.25) + 1)/2) % 16;
-  image_index = (indexCalc + 3) % 16;
   
+  var index = (indexCalc + 3) % 16;
+  
+  if ((index != image_index) &amp;&amp; (changedSpriteDir &gt; room_speed / 3)) {
+    image_index = index;
+    changedSpriteDir = 0;
+  }
+  
+  changedSpriteDir++;
   
   
 //}
