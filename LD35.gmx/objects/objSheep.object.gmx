@@ -71,7 +71,7 @@ steeringY = phy_speed_y;
 closeDist = 50;
 
 barkScared = false;
-barkDist = scareDist * 2;
+barkDist = scareDist * 1.5;
 
 nearBark = false;
 
@@ -670,8 +670,8 @@ if (scared) {
     
     
     var desiredVec = scrNormalizeVector(dX, dY);
-    barkSteeringX = (desiredVec[0] * maxSpeed * 2) - phy_speed_x;
-    barkSteeringY = (desiredVec[1] * maxSpeed * 2) - phy_speed_y;  
+    barkSteeringX = (desiredVec[0] * maxSpeed * 1.3) - phy_speed_x;
+    barkSteeringY = (desiredVec[1] * maxSpeed * 1.3) - phy_speed_y;  
   } else {
     barkSteeringX = 0;
     barkSteeringY = 0;

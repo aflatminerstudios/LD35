@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Setup default variables
 
-moveSpeed = room_speed / 6;
+moveSpeed = room_speed / 12;
 baseSpeed = moveSpeed;
 
 canBark = true;
@@ -172,7 +172,7 @@ if (!sprinting &amp;&amp; currentSprint &lt; maxSprint) {
     moveSpeed = baseSpeed;
   }
 } else {
-  if (keyboard_check(vk_control) &amp;&amp; currentSprint &gt; (0.2 * maxSprint)) {
+  if (keyboard_check(vk_control) &amp;&amp; currentSprint &gt; (0.2 * maxSprint) &amp;&amp; !sneaking) {
     sprinting = true;
     moveSpeed *= 2;
   }
@@ -200,8 +200,10 @@ if (!sprinting &amp;&amp; currentSprint &lt; maxSprint) {
             <string>///Sneak handling
 if (sneaking &amp;&amp; !keyboard_check(vk_shift)) {
   sneaking = false;
-} else if (!sneaking &amp;&amp; keyboard_check(vk_shift)) {
+  moveSpeed = baseSpeed;
+} else if (!sneaking &amp;&amp; keyboard_check(vk_shift)) &amp;&amp; !sprinting {
   sneaking = true;
+  moveSpeed *= 0.75;
 }
 </string>
           </argument>
