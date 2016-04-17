@@ -22,6 +22,13 @@
       <sprite>sprites\sprDoomSpiral</sprite>
       <sprite>sprites\sprHeart</sprite>
     </sprites>
+    <sprites name="Sheep">
+      <sprite>sprites\sprSheepRunRight</sprite>
+      <sprite>sprites\sprSheepRunLeft</sprite>
+      <sprite>sprites\sprSheepRunUp</sprite>
+      <sprite>sprites\sprSheepRunDown</sprite>
+      <sprite>sprites\sprSheepStatic</sprite>
+    </sprites>
     <sprite>sprites\sprSheepPlaceholder</sprite>
     <sprite>sprites\sprScared</sprite>
     <sprite>sprites\sprBarkPlaceholder</sprite>
