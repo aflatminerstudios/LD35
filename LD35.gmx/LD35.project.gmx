@@ -92,6 +92,7 @@
     </objects>
     <object>objects\objTitle</object>
     <object>objects\objLogo</object>
+    <object>objects\objShadow</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomLogo</room>
