@@ -76,6 +76,7 @@
     <script>scripts\scrNormalizeVector.gml</script>
     <script>scripts\scrEndPicture.gml</script>
     <script>scripts\scrSpawnPic.gml</script>
+    <script>scripts\scrEndGame.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\objDog</object>
