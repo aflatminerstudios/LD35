@@ -34,6 +34,7 @@
     <script>scripts\scrGetPicturePercent.gml</script>
     <script>scripts\scrDisplayText.gml</script>
     <script>scripts\scrNormalizeVector.gml</script>
+    <script>scripts\scrEndPicture.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\objDog</object>
@@ -44,6 +45,7 @@
     <object>objects\objGlobals</object>
     <object>objects\objBark</object>
     <object>objects\objBarkVisible</object>
+    <object>objects\objMiniPicture</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomTest</room>
