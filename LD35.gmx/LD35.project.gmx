@@ -61,6 +61,7 @@
     </sprites>
     <sprite>sprites\sprTitleScreen</sprite>
     <sprite>sprites\sprLogo</sprite>
+    <sprite>sprites\sprFarmer</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
@@ -98,6 +99,7 @@
     <object>objects\objTitle</object>
     <object>objects\objLogo</object>
     <object>objects\objShadow</object>
+    <object>objects\objFarmer</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomLogo</room>
