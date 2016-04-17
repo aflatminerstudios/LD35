@@ -5,8 +5,8 @@ var gameCtrl = argument1;
 
 picture.visible = true;
 
-if (gameCtrl.howManyPics < picsPerGame) {
-  alarm[2] = timeBetweenRounds * room_speed;
+if (gameCtrl.howManyPics < gameCtrl.picsPerGame) {
+  gameCtrl.alarm[2] = gameCtrl.timeBetweenRounds * room_speed;
 } else {
   scrEndGame();
 }

@@ -56,11 +56,12 @@ howManyPics = 0;
 pics[0] = noone;
 
 picsPerGame = 5;
-timeBetweenRounds = 1;
+timeBetweenRounds = 3;
 
 scrSpawnPic(self.id);
 
-
+//For indicating if picture drawing is still going
+ending = false;
 </string>
           </argument>
         </arguments>
@@ -223,6 +224,8 @@ with (pic) {
 }
 
 scrSpawnPic(self.id);
+
+ending = false;
 </string>
           </argument>
         </arguments>
