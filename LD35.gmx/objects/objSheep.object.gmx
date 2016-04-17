@@ -35,7 +35,7 @@ maxAvoid = room_speed / 40;
 
 distMult = 1.5;
 
-dogMult = 6;
+dogMult = 4;
 scareDist = sprite_width * dogMult;
 
 direction = irandom(360);
@@ -71,10 +71,11 @@ steeringY = phy_speed_y;
 closeDist = 50;
 
 barkScared = false;
-barkDist = scareDist * 1.5;
+barkDist = scareDist * 1.75;
 
 nearBark = false;
 
+slowingRadius = 20;
 </string>
           </argument>
         </arguments>
@@ -99,11 +100,16 @@ nearBark = false;
             <kind>1</kind>
             <string>///Turn on wander
 
-wandering = true;
-targetX = x + random_range(-100, 100);
-targetY = y + random_range(-100, 100);
-
-wanderSpeed = baseSpeed * random_range(0.5,1.2);
+if (!scared) {
+  wandering = true;
+  targetX = x + random_range(-75, 75);
+  targetY = y + random_range(-75, 75);
+  
+  phy_speed_x = baseSpeed * random_range(-1, 1);
+  phy_speed_y = baseSpeed * random_range(-1, 1);
+}
+var rTime = random(wanderTime);
+alarm[1] = floor(rTime * room_speed);
 </string>
           </argument>
         </arguments>
@@ -653,7 +659,11 @@ if (scared) {
   
   var dX = x - dog.x;
   var dY = y - dog.y;
+  var dogDist = point_distance(x, x, dog.x, dog.x);
   
+  if (dogDist &gt; slowingRadius) {
+  
+  }
   
   var desiredVec = scrNormalizeVector(dX, dY);
   fleeSteeringX = (desiredVec[0] * maxSpeed) - phy_speed_x;
@@ -670,8 +680,8 @@ if (scared) {
     
     
     var desiredVec = scrNormalizeVector(dX, dY);
-    barkSteeringX = (desiredVec[0] * maxSpeed * 1.3) - phy_speed_x;
-    barkSteeringY = (desiredVec[1] * maxSpeed * 1.3) - phy_speed_y;  
+    barkSteeringX = (desiredVec[0] * maxSpeed * 1.25) - phy_speed_x;
+    barkSteeringY = (desiredVec[1] * maxSpeed * 1.25) - phy_speed_y;  
   } else {
     barkSteeringX = 0;
     barkSteeringY = 0;
@@ -823,7 +833,7 @@ if (scared) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Move based on target x &amp; y
+            <string>///REMOVED: Move based on target x &amp; y
 /*direction = point_direction(x, y, targetX, targetY);
 var dist = point_distance(x, y, targetX, targetY);
 speed = dist/speedDist * baseSpeed;
@@ -866,6 +876,7 @@ var dogColl = collision_circle(x, y, scareDist, objDog, false, true);
 if (dogColl != noone &amp;&amp; !dogColl.sneaking) {
   nearDog = true;
   scared = true;
+  wandering = false;
 } else {
   nearDog = false;
 }
@@ -876,6 +887,7 @@ if (barkColl != noone) {
   nearBark = true;
   scared = true;
   barkScared = true;
+  wandering = false;
 } else {
   nearBark = false;
 }
@@ -908,8 +920,12 @@ if (newx &lt; 0 || newx &gt; room_width) {
   phy_speed_x *= -1;
 }
 
-if (newy &lt; 0 || newy &gt; room_height) {
-  phy_speed_y *= -1;
+if (newy &lt; 52 ) {
+  phy_speed_y = 0;
+  phy_position_y = 52
+} else if (newy &gt; 486) {
+  phy_speed_y = 0;
+  phy_position_y = 486;
 }
 </string>
           </argument>
@@ -931,7 +947,7 @@ if (newy &lt; 0 || newy &gt; room_height) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Change sprite direction
+            <string>///REDO: Change sprite direction
 image_angle = point_direction(0, 0, phy_speed_x, phy_speed_y);
 </string>
           </argument>
@@ -991,7 +1007,7 @@ if (!scared) {
   
   with (objSheep) {
     var dist = scrEucDist(self.id, sheep);
-    if (sheep != self.id &amp;&amp; dist &lt; sprite_width * 1.2) {
+    if (sheep != self.id &amp;&amp; dist &lt; sprite_width * 1.3) {
       nearSheep[numNear++] = self.id;        
     }
   }
@@ -1022,6 +1038,49 @@ if (!scared) {
   phy_speed_x = min(abs(phy_speed_x), baseSpeed) * sign(phy_speed_x);
   phy_speed_y = phy_speed_y + steeringY;
   phy_speed_y = min(abs(phy_speed_y), baseSpeed) * sign(phy_speed_y);
+  
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Wandering code
+
+if (wandering &amp;&amp; !scared) {
+
+  if (point_distance(x, y, targetX, targetY) &lt; 5) {
+    wandering = false;
+  }
+
+  dX = targetX - x;
+  dY = targetY - y;
+  
+  
+  var desiredVec = scrNormalizeVector(dX, dY);
+  steeringX = (desiredVec[0] * maxSpeed * 0.9) - phy_speed_x;
+  steeringY = (desiredVec[1] * maxSpeed * 0.9) - phy_speed_y;
+
+  phy_speed_x = phy_speed_x + steeringX;
+  phy_speed_x = min(abs(phy_speed_x), maxSpeed) * sign(phy_speed_x);
+  phy_speed_y = phy_speed_y + steeringY;
+  phy_speed_y = min(abs(phy_speed_y), maxSpeed) * sign(phy_speed_y);
+
   
 }
 </string>

@@ -136,11 +136,13 @@ if (newx &lt; (-1 * sprite_width) || newx &gt; (room_width + sprite_width)) {
   phy_speed_x *= -1;
 }
 
-if (newy &lt; (-1 * sprite_height) || newy &gt; (room_height + sprite_height)) {
-  phy_speed_y *= -1;
+if (newy &lt; 22 ) {
+  phy_speed_y = 0;
+  phy_position_y = 22
+} else if (newy &gt; 512) {
+  phy_speed_y = 0;
+  phy_position_y = 512;
 }
-
-
 </string>
           </argument>
         </arguments>
