@@ -109,6 +109,7 @@
     <room>rooms\roomCredits</room>
     <room>rooms\roomInstructions</room>
     <room>rooms\roomGameOver</room>
+    <room>rooms\roomLevelSelect</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
