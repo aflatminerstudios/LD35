@@ -916,9 +916,28 @@ if (barkColl != noone) {
 var newx = phy_position_x + phy_speed_x;
 var newy = phy_position_y + phy_speed_y;
 
+
+//if (newy &gt;= 320) {
+  if (newx &lt; 35) {
+    phy_speed_x = 0;
+    phy_position_x = 35;
+  } else if (newx &gt; 760) {
+    phy_speed_x = 0;
+    phy_position_x = 760;
+  }
+/*} else {e
+  calc = newx  * (0.5) + 30; 
+  show_debug_message(string(newx) + " @ " + string(calc));
+  if (newx &lt; calc) {
+    phy_speed_x = 0;
+    phy_position_x = calc;
+  }
+}*/
+/* 
 if (newx &lt; 0 || newx &gt; room_width) {
   phy_speed_x *= -1;
 }
+*/
 
 if (newy &lt; 52 ) {
   phy_speed_y = 0;
@@ -948,7 +967,10 @@ if (newy &lt; 52 ) {
           <argument>
             <kind>1</kind>
             <string>///REDO: Change sprite direction
-image_angle = point_direction(0, 0, phy_speed_x, phy_speed_y);
+if (phy_speed_x != 0 || phy_speed_y != 0) {
+  image_angle = point_direction(0, 0, phy_speed_x, phy_speed_y) + 180;
+  show_debug_message(string(phy_speed_x) + ", " + string(phy_speed_y) + " = " + string(point_direction(0, 0, phy_speed_x, phy_speed_y)));
+}
 </string>
           </argument>
         </arguments>

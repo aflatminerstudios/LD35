@@ -19,6 +19,7 @@
     <sprite>sprites\sprSheepPlaceholder</sprite>
     <sprite>sprites\sprScared</sprite>
     <sprite>sprites\sprBarkPlaceholder</sprite>
+    <sprite>sprites\sprBarkLines</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
