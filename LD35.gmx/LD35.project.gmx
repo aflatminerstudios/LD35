@@ -9,6 +9,8 @@
     <sound>sound\sndBark2</sound>
     <sound>sound\sndBark3</sound>
     <sound>sound\sndLogoTheme</sound>
+    <sound>sound\sndTitleScreen</sound>
+    <sound>sound\sndMainTheme</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sprDog</sprite>
@@ -76,6 +78,7 @@
     <script>scripts\scrNormalizeVector.gml</script>
     <script>scripts\scrEndPicture.gml</script>
     <script>scripts\scrSpawnPic.gml</script>
+    <script>scripts\scrEndGame.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\objDog</object>
@@ -83,11 +86,11 @@
     <object>objects\objSheep</object>
     <object>objects\objNazcaPicture</object>
     <object>objects\objGameControl</object>
+    <object>objects\objCredits</object>
     <object>objects\objGlobals</object>
     <object>objects\objBark</object>
     <object>objects\objBarkVisible</object>
     <object>objects\objMiniPicture</object>
-    <object>objects\objCredits</object>
     <objects name="Clouds">
       <object>objects\objCloudShadow</object>
       <object>objects\objCloudGenerator</object>

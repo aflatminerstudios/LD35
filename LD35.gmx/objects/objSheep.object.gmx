@@ -806,6 +806,7 @@ if (!findScared &amp;&amp; random(1) &lt; unscareChance) {
   sheep.barkScared = false;
   distMult = 1 + random(1);
   unscaredTimer = 0;
+  wallAvoiding = false;
 }
 
 
@@ -819,8 +820,8 @@ if (scared) {
   
   var dog = instance_find(objDog, 0);
   
-  var dX = x - dog.x;
-  var dY = y - dog.y;
+  var dX = phy_position_x - dog.phy_position_x;
+  var dY = phy_position_y - dog.phy_position_y;
   var dogDist = scrEucDist(self.id, dog);//point_distance(x, x, dog.x, dog.x);
   
   var desiredVec = scrNormalizeVector(dX, dY);
@@ -833,8 +834,8 @@ if (scared) {
   if (barkScared) {
     var bark = instance_find(objDog, 0);
     
-    dX = x - bark.x;
-    dY = y - bark.y;
+    dX = phy_position_x - bark.x;
+    dY = phy_position_y - bark.y;
     
     var barkD = scrEucDist(self.id, bark);//point_distance(x, x, dog.x, dog.x);
     
@@ -863,8 +864,8 @@ if (scared) {
     
     //Getcenter of flock
     if ((id != sheep.id) &amp;&amp; (dist &lt; global.maxDist) &amp;&amp; (abs(dir - sheep.direction) &lt; 90)) {
-      centerX += x;
-      centerY += y;
+      centerX += phy_position_x;
+      centerY += phy_position_y;
       flockCount++;      
     }  
     
@@ -899,9 +900,9 @@ if (scared) {
   
   /////////////////////////////Steer to center of local flock///////////////////////  
   
-  if (flockCount &gt; 0) {
-    dX = centerX - x;
-    dY = centerY - y;
+  if (flockCount &gt; 1) {
+    dX = centerX - phy_position_x;
+    dY = centerY - phy_position_y;
     
     
     var desiredVec = scrNormalizeVector(dX, dY);
@@ -968,7 +969,7 @@ if (scared) {
   phy_speed_y = min(abs(phy_speed_y), maxSpeed) * sign(phy_speed_y);
 
   
-} else {
+} else if (!wandering) {
   phy_speed_x = 0;
   phy_speed_y = 0;
 }
@@ -1147,19 +1148,115 @@ if (wandering &amp;&amp; !scared &amp;&amp; unscaredTimer &lt; timeIdleAfterScar
 //Should work if both scared or not.  
 //Should just add a steering force of some power to current speeds
 //Should push some direction within the 180 away from the wall
-var dir = irandom(180);
 
-if (phy_position_x &lt; 45) {
-  
-} else if (phy_position_x &gt; 750) {
-  
-}
+if (!wallAvoiding &amp;&amp; !scared) {
 
+  var xwall = false;
+  var ywall = false;
+  
 
-if (phy_position_y &lt; 42 ) {
+  if (phy_position_x &lt; 55) {
+    var dir1 = random_range(315, 405) % 360;
+    xwall = true;
+  } else if (phy_position_x &gt; 730) {
+    var dir1 = random_range(135, 225) % 360;
+    xwall = true;
+  }
   
-} else if (phy_position_y &gt; 476) {
   
+
+  if (phy_position_y &lt; 60 ) {
+    var dir2 = random_range(225, 315);
+    dir2 = (dir2 + 180) % 360
+    ywall = true;
+  } else if (phy_position_y &gt; 470) {
+    var dir2 = random_range(45, 135);
+    ywall = true; 
+  }
+  
+  if (xwall) {
+
+    wallAvoidance = true;
+    var normedX = x + lengthdir_x(sprite_width * 2, dir1);
+    var normedY = y + lengthdir_y(sprite_width * 2, dir1);
+    
+    var dX = normedX - x;
+    var dY = normedY - y;
+    
+    
+    var desiredVec = scrNormalizeVector(dX, dY);
+    var dir1SteeringX = (desiredVec[0] * baseSpeed) - phy_speed_x;
+    var dir1SteeringY = (desiredVec[1] * baseSpeed) - phy_speed_y;
+  } else {
+    var dir1SteeringX = 0;
+    var dir1SteeringY = 0;
+   
+  }
+
+  
+  if (ywall) {
+    wallAvoidance = true;
+    var normedX2 = x + lengthdir_x(sprite_width * 2, dir2);
+    var normedY2 = y + lengthdir_y(sprite_width * 2, dir2);
+    
+    var dX = normedX2 - phy_position_x;
+    var dY = normedY2 - phy_position_y;
+    
+    
+    var desiredVec = scrNormalizeVector(dX, dY);
+    var dir2SteeringX = (desiredVec[0] * baseSpeed) - phy_speed_x;
+    var dir2SteeringY = (desiredVec[1] * baseSpeed) - phy_speed_y;
+  } else {
+    var dir2SteeringX = 0;
+    var dir2SteeringY = 0;
+  }
+  
+  var steeringX = dir1SteeringX + dir2SteeringX;
+  var steeringY = dir2SteeringY + dir2SteeringY;
+  
+  if (steeringX &gt; 0 || steeringY &gt; 0) {
+    wallAvoiding = true;
+    if (xwall) {
+      wallTargetX = normedX;
+      wallTargetY = normedY;
+      if (ywall) {
+        wallTargetX = (wallTargetX + normedX2) / 2;
+        wallTergetY = (wallTargetY + normedY2) / 2;
+      }
+    } else if (ywall) {
+      wallTargetX = normedX2;
+      wallTergetY = normedY2;
+    } else {
+      wallTargetX = phy_position_x;
+      wallTargetY = phy_position_y;
+    }
+  }
+  
+  phy_speed_x = phy_speed_x + steeringX;
+  phy_speed_x = min(abs(phy_speed_x), maxSpeed) * sign(phy_speed_x);
+  phy_speed_y = phy_speed_y + steeringY;
+  phy_speed_y = min(abs(phy_speed_y), maxSpeed) * sign(phy_speed_y);
+  
+} else if (!scared) {
+  
+  var dX = wallTargetX - phy_position_x;
+  var dY = wallTargetY - phy_position_y;
+  
+  
+  var desiredVec = scrNormalizeVector(dX, dY);
+  var steeringX = (desiredVec[0] * baseSpeed) - phy_speed_x;
+  var steeringY = (desiredVec[1] * baseSpeed) - phy_speed_y;
+  
+  phy_speed_x = phy_speed_x + steeringX;
+  phy_speed_x = min(abs(phy_speed_x), maxSpeed) * sign(phy_speed_x);
+  phy_speed_y = phy_speed_y + steeringY;
+  phy_speed_y = min(abs(phy_speed_y), maxSpeed) * sign(phy_speed_y);
+  
+  var dist = point_distance(phy_position_x, phy_position_y, wallTargetX, wallTargetY);
+  if (dist &lt; 5) {
+    wallAvoiding = false;
+  }
+ 
 }
 </string>
           </argument>

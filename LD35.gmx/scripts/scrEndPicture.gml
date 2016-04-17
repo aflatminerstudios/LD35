@@ -7,4 +7,6 @@ picture.visible = true;
 
 if (gameCtrl.howManyPics < picsPerGame) {
   alarm[2] = timeBetweenRounds * room_speed;
+} else {
+  scrEndGame();
 }

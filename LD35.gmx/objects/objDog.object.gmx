@@ -44,7 +44,7 @@ sneaking = false;
 moveVec[0] = 0;
 moveVec[1] = 0;
 moveDir = 0;
-</string>
+			</string>
           </argument>
         </arguments>
       </action>
@@ -67,7 +67,7 @@ moveDir = 0;
             <string>/// Create shadow
 myShadow = instance_create(x, y+50, objShadow)
 myShadow.parent = self.id;
-</string>
+			</string>
           </argument>
         </arguments>
       </action>
