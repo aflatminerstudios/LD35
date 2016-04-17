@@ -96,10 +96,10 @@ if (bark != noone &amp;&amp; point_distance(x, y, bark.x, bark.y) &lt; barkDist)
   if (!gc.ending || gc.alarm[2] &lt; 0) {
     gc.ending = true;
     scrEndPicture(gc.pic, gc);
-  } else {
+  } /*else {
     gc.ending = false;
     gc.alarm[2] = -1;
-  }
+  }*/
 }
 </string>
           </argument>
