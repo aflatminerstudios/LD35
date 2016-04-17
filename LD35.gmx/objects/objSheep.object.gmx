@@ -71,11 +71,12 @@ steeringY = phy_speed_y;
 closeDist = 50;
 
 barkScared = false;
-barkDist = scareDist * 1.5;
+barkDist = scareDist * 1.8;
 
 nearBark = false;
 
-slowingRadius = 20;
+slowingRadius = scareDist * 0.2;
+barkSlowRadius = barkDist * 0.2;
 </string>
           </argument>
         </arguments>
@@ -659,15 +660,15 @@ if (scared) {
   
   var dX = x - dog.x;
   var dY = y - dog.y;
-  var dogDist = point_distance(x, x, dog.x, dog.x);
-  
-  if (dogDist &gt; slowingRadius) {
-  
+  var dogDist = scrEucDist(self.id, dog);//point_distance(x, x, dog.x, dog.x);
+  var factor = 1;  
+  if (dogDist &gt; slowingRadius &amp;&amp; dogDist &lt; scareDist) {
+    factor = (scareDist - dogDist) / (scareDist - slowingRadius);      
   }
   
   var desiredVec = scrNormalizeVector(dX, dY);
-  fleeSteeringX = (desiredVec[0] * maxSpeed) - phy_speed_x;
-  fleeSteeringY = (desiredVec[1] * maxSpeed) - phy_speed_y;
+  fleeSteeringX = (desiredVec[0] * maxSpeed * factor) - phy_speed_x;
+  fleeSteeringY = (desiredVec[1] * maxSpeed * factor) - phy_speed_y;
 
 
   
@@ -678,10 +679,15 @@ if (scared) {
     dX = x - bark.x;
     dY = y - bark.y;
     
+    var barkD = scrEucDist(self.id, bark);//point_distance(x, x, dog.x, dog.x);
+    factor = 1;  
+    if (barkD &gt; barkSlowRadius &amp;&amp; barkD &lt; barkDist) {
+      factor = (scareDist - barkD) / (barkDist - slowingRadius);      
+    }
     
     var desiredVec = scrNormalizeVector(dX, dY);
-    barkSteeringX = (desiredVec[0] * maxSpeed * 1.25) - phy_speed_x;
-    barkSteeringY = (desiredVec[1] * maxSpeed * 1.25) - phy_speed_y;  
+    barkSteeringX = (desiredVec[0] * maxSpeed * 1.4 * factor) - phy_speed_x;
+    barkSteeringY = (desiredVec[1] * maxSpeed * 1.4 * factor) - phy_speed_y;  
   } else {
     barkSteeringX = 0;
     barkSteeringY = 0;
@@ -1043,13 +1049,13 @@ if (wandering &amp;&amp; !scared) {
   
   
   var desiredVec = scrNormalizeVector(dX, dY);
-  steeringX = (desiredVec[0] * maxSpeed * 0.9) - phy_speed_x;
-  steeringY = (desiredVec[1] * maxSpeed * 0.9) - phy_speed_y;
+  steeringX = (desiredVec[0] * baseSpeed * 0.9) - phy_speed_x;
+  steeringY = (desiredVec[1] * baseSpeed * 0.9) - phy_speed_y;
 
   phy_speed_x = phy_speed_x + steeringX;
-  phy_speed_x = min(abs(phy_speed_x), maxSpeed) * sign(phy_speed_x);
+  phy_speed_x = min(abs(phy_speed_x), baseSpeed) * sign(phy_speed_x);
   phy_speed_y = phy_speed_y + steeringY;
-  phy_speed_y = min(abs(phy_speed_y), maxSpeed) * sign(phy_speed_y);
+  phy_speed_y = min(abs(phy_speed_y), baseSpeed) * sign(phy_speed_y);
 
   
 }
