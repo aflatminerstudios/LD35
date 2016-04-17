@@ -15,10 +15,17 @@
       <sprite>sprites\sprNazcaOval</sprite>
       <sprite>sprites\sprNazcaDonut</sprite>
       <sprite>sprites\sprNazcaA</sprite>
+      <sprite>sprites\sprCircle</sprite>
+      <sprite>sprites\sprC</sprite>
+      <sprite>sprites\sprCorners</sprite>
+      <sprite>sprites\sprH</sprite>
+      <sprite>sprites\sprDoomSpiral</sprite>
+      <sprite>sprites\sprHeart</sprite>
     </sprites>
     <sprite>sprites\sprSheepPlaceholder</sprite>
     <sprite>sprites\sprScared</sprite>
     <sprite>sprites\sprBarkPlaceholder</sprite>
+    <sprite>sprites\sprBarkLines</sprite>
     <sprites name="Clouds">
       <sprite>sprites\sprCloudShadow1</sprite>
       <sprite>sprites\sprCloudShadow2</sprite>

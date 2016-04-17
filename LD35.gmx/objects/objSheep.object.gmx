@@ -71,7 +71,7 @@ steeringY = phy_speed_y;
 closeDist = 50;
 
 barkScared = false;
-barkDist = scareDist * 1.75;
+barkDist = scareDist * 1.5;
 
 nearBark = false;
 
@@ -916,9 +916,28 @@ if (barkColl != noone) {
 var newx = phy_position_x + phy_speed_x;
 var newy = phy_position_y + phy_speed_y;
 
+
+//if (newy &gt;= 320) {
+  if (newx &lt; 35) {
+    phy_speed_x = 0;
+    phy_position_x = 35;
+  } else if (newx &gt; 760) {
+    phy_speed_x = 0;
+    phy_position_x = 760;
+  }
+/*} else {e
+  calc = newx  * (0.5) + 30; 
+  show_debug_message(string(newx) + " @ " + string(calc));
+  if (newx &lt; calc) {
+    phy_speed_x = 0;
+    phy_position_x = calc;
+  }
+}*/
+/* 
 if (newx &lt; 0 || newx &gt; room_width) {
   phy_speed_x *= -1;
 }
+*/
 
 if (newy &lt; 52 ) {
   phy_speed_y = 0;
@@ -927,28 +946,6 @@ if (newy &lt; 52 ) {
   phy_speed_y = 0;
   phy_position_y = 486;
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///REDO: Change sprite direction
-image_angle = point_direction(0, 0, phy_speed_x, phy_speed_y);
 </string>
           </argument>
         </arguments>
@@ -1082,6 +1079,31 @@ if (wandering &amp;&amp; !scared) {
   phy_speed_y = min(abs(phy_speed_y), maxSpeed) * sign(phy_speed_y);
 
   
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///REDO: Change sprite direction
+if (phy_speed_x != 0 || phy_speed_y != 0) {
+  image_angle = point_direction(0, 0, phy_speed_x, phy_speed_y) + 180;
+  //show_debug_message(string(phy_speed_x) + ", " + string(phy_speed_y) + " = " + string(point_direction(0, 0, phy_speed_x, phy_speed_y)));
 }
 </string>
           </argument>

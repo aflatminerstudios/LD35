@@ -37,6 +37,10 @@ currentSprint = maxSprint;
 sprinting = false;
 
 sneaking = false;
+
+moveVec[0] = 0;
+moveVec[1] = 0;
+moveDir = 0;
 </string>
           </argument>
         </arguments>
@@ -105,6 +109,12 @@ if (scrIsLeftPressed()) {
    phy_speed_x = moveSpeed;
 } else {
   phy_speed_x = 0;
+}
+
+if (phy_speed_x != 0 || phy_speed_y != 0) {
+  var normed = scrNormalizeVector(phy_speed_x, phy_speed_y);
+  moveDir = point_direction(0, 0, phy_speed_x, phy_speed_y);
+  moveVec = normed;
 }
 </string>
           </argument>
@@ -292,12 +302,16 @@ if (canBark) {
             <string>///Create bark
 
 if (canBark) {
-  var bark = instance_create(x, y, objBark);
+
+  var bark = instance_create(phy_position_x + moveVec[0] * 20, phy_position_y + moveVec[1] * 20, objBark);
   var barkV = instance_create(x, y, objBarkVisible);
   bark.parent = self.id;
   barkV.parent = self.id;
   alarm[0] = 6 * room_speed;
   canBark = false;
+  
+  
+  barkV.image_angle = point_direction(0, 0, phy_speed_x, phy_speed_y) + 180;
   
   audio_play_sound(sndBark, 100, false);  
 }

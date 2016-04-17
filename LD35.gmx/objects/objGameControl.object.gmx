@@ -50,7 +50,7 @@ randomize();
             <kind>1</kind>
             <string>///Randomly choose picture
 
-var whichSprite = choose(sprNazcaOval, sprNazcaDonut, sprNazcaA);
+var whichSprite = choose(sprNazcaOval, sprNazcaDonut, sprNazcaA, sprHeart, sprC, sprCircle, sprCorners, sprDoomSpiral, sprH);
 
 pic = instance_create(400,300,objNazcaPicture);
 pic.sprite_index = whichSprite;
