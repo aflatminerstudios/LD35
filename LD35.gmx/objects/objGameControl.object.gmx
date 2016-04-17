@@ -50,15 +50,12 @@ randomize();
             <kind>1</kind>
             <string>///Randomly choose picture
 
-var whichSprite = choose(sprNazcaOval, sprNazcaDonut, sprNazcaA, sprHeart, sprC, sprCircle, sprCorners, sprDoomSpiral, sprH);
-
-pic = instance_create(400,300,objNazcaPicture);
-pic.sprite_index = whichSprite;
-
-alarm[0] = 1 * room_speed;
-
-howManyPics = 0;
+pic = noone;
 minipics[0] = noone;
+howManyPics = 0;
+
+scrSpawnPic(self.id);
+
 
 </string>
           </argument>
@@ -232,6 +229,31 @@ miniPics[howManyPics++] = temp;
           <argument>
             <kind>1</kind>
             <string>draw_text_color(500, 20, string(timer), c_red, c_red, c_red, c_red, 100);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///End current picture
+
+scrEndPicture(pic);
 </string>
           </argument>
         </arguments>

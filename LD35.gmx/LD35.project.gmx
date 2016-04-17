@@ -49,6 +49,7 @@
     <script>scripts\scrDisplayText.gml</script>
     <script>scripts\scrNormalizeVector.gml</script>
     <script>scripts\scrEndPicture.gml</script>
+    <script>scripts\scrSpawnPic.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\objDog</object>
