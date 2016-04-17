@@ -28,6 +28,8 @@
             <string>///Create globals
 
 global.maxDist = 100;
+
+
 </string>
           </argument>
         </arguments>

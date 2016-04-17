@@ -48,11 +48,15 @@ randomize();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Randomly choose picture
+            <string>///Picture variables/spawn
 
 pic = noone;
 minipics[0] = noone;
 howManyPics = 0;
+pics[0] = noone;
+
+picsPerGame = 5;
+timeBetweenRounds = 1;
 
 scrSpawnPic(self.id);
 
@@ -146,6 +150,35 @@ if (room != roomTest) {
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Spawn new picture
+
+with (pic) {
+  instance_destroy();
+}
+
+scrSpawnPic(self.id);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="1">
       <action>
         <libid>1</libid>
@@ -168,7 +201,7 @@ if (room != roomTest) {
 timer--;
 
 if (timer == 0) {
-  scrEndPicture(pic);
+  scrEndPicture(pic, self.id);
 } else {
   alarm[1] = room_speed;
 }
@@ -253,7 +286,7 @@ miniPics[howManyPics++] = temp;
             <kind>1</kind>
             <string>///End current picture
 
-scrEndPicture(pic);
+scrEndPicture(pic, self.id);
 </string>
           </argument>
         </arguments>
