@@ -198,13 +198,14 @@ scrSpawnPic(self.id);
             <kind>1</kind>
             <string>///Adjust timer
 
-timer--;
-
+timer++;
+/*
 if (timer == 0) {
   scrEndPicture(pic, self.id);
 } else {
   alarm[1] = room_speed;
 }
+*/
 </string>
           </argument>
         </arguments>
@@ -230,7 +231,7 @@ if (timer == 0) {
             <string>///Make picture invisible and move down
 pic.visible = false;
 
-var temp = instance_create(96 + 96 * howManyPics, 448, objMiniPicture);
+var temp = instance_create(96 + 96 * howManyPics, 542, objMiniPicture);
 temp.sprite_index = pic.sprite_index;
 temp.image_xscale = 0.1;
 temp.image_yscale = 0.1;

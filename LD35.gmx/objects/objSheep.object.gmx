@@ -81,6 +81,33 @@ barkSlowRadius = barkDist * 0.2;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Sprite array
+
+
+numSprites = 16;
+spriteArray[0] = sprSheepRunRight;
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="2" enumb="1">
       <action>
@@ -618,6 +645,42 @@ if (collision_line(x, y, dX, dY, objCanCollide, false, true)) {
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///REMOVED: Move based on target x &amp; y
+/*direction = point_direction(x, y, targetX, targetY);
+var dist = point_distance(x, y, targetX, targetY);
+speed = dist/speedDist * baseSpeed;
+direction += meanderDir;
+
+var coll = instance_place(x+hspeed, y + vspeed, objCanCollide);
+
+if (coll != noone) {
+//  direction = point_direction(coll.x, coll.y, x, y);
+//  speed = baseSpeed;
+  speed = 0;
+  //trigger = true;
+}
+
+*/
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Physics-based/vector-based steering behaviors
 
 var sheep = self.id;
@@ -663,7 +726,7 @@ if (scared) {
   var dogDist = scrEucDist(self.id, dog);//point_distance(x, x, dog.x, dog.x);
   var factor = 1;  
   if (dogDist &gt; slowingRadius &amp;&amp; dogDist &lt; scareDist) {
-    factor = (scareDist - dogDist) / (scareDist - slowingRadius);      
+   // factor = (scareDist - dogDist) / (scareDist - slowingRadius);      
   }
   
   var desiredVec = scrNormalizeVector(dX, dY);
@@ -682,7 +745,7 @@ if (scared) {
     var barkD = scrEucDist(self.id, bark);//point_distance(x, x, dog.x, dog.x);
     factor = 1;  
     if (barkD &gt; barkSlowRadius &amp;&amp; barkD &lt; barkDist) {
-      factor = (scareDist - barkD) / (barkDist - slowingRadius);      
+     // factor = (scareDist - barkD) / (barkDist - slowingRadius);      
     }
     
     var desiredVec = scrNormalizeVector(dX, dY);
@@ -819,42 +882,6 @@ if (scared) {
   phy_speed_x = 0;
   phy_speed_y = 0;
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///REMOVED: Move based on target x &amp; y
-/*direction = point_direction(x, y, targetX, targetY);
-var dist = point_distance(x, y, targetX, targetY);
-speed = dist/speedDist * baseSpeed;
-direction += meanderDir;
-
-var coll = instance_place(x+hspeed, y + vspeed, objCanCollide);
-
-if (coll != noone) {
-//  direction = point_direction(coll.x, coll.y, x, y);
-//  speed = baseSpeed;
-  speed = 0;
-  //trigger = true;
-}
-
-*/
 </string>
           </argument>
         </arguments>
@@ -1087,6 +1114,7 @@ if (wandering &amp;&amp; !scared) {
 
 if (phy_speed_x != 0 || phy_speed_y != 0) {
   //If moving
+  
   currentDir = point_direction(0, 0, phy_speed_x, phy_speed_y) 
   
 } //else {

@@ -40,7 +40,6 @@
       <sprite>sprites\sprCloudShadow3</sprite>
       <sprite>sprites\sprCloudShadow4</sprite>
     </sprites>
-
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
@@ -74,7 +73,6 @@
       <object>objects\objCloudShadow</object>
       <object>objects\objCloudGenerator</object>
     </objects>
-
   </objects>
   <rooms name="rooms">
     <room>rooms\roomMain</room>
