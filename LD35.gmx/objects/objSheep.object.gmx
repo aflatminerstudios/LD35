@@ -71,7 +71,7 @@ steeringY = phy_speed_y;
 closeDist = 50;
 
 barkScared = false;
-barkDist = scareDist * 1.75;
+barkDist = scareDist * 1.5;
 
 nearBark = false;
 
