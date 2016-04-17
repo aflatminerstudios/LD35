@@ -55,7 +55,7 @@ baseSpeed = moveSpeed;
 
 canBark = true;
 //How often can bark
-barkCooldown = 5 * room_speed;
+barkCooldown = 0;
 
 //Number of ticks can sprint
 maxSprint = 100;
