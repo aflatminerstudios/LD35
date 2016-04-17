@@ -7,6 +7,8 @@
   <sounds name="sound">
     <sound>sound\sndBark</sound>
     <sound>sound\sndLogoTheme</sound>
+    <sound>sound\sndTitleScreen</sound>
+    <sound>sound\sndMainTheme</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sprDog</sprite>
@@ -81,11 +83,11 @@
     <object>objects\objSheep</object>
     <object>objects\objNazcaPicture</object>
     <object>objects\objGameControl</object>
+    <object>objects\objCredits</object>
     <object>objects\objGlobals</object>
     <object>objects\objBark</object>
     <object>objects\objBarkVisible</object>
     <object>objects\objMiniPicture</object>
-    <object>objects\objCredits</object>
     <objects name="Clouds">
       <object>objects\objCloudShadow</object>
       <object>objects\objCloudGenerator</object>

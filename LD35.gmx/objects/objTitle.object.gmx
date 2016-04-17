@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>/// Set up title screen variables
 
-music = sndLogoTheme;
+music = sndTitleScreen;
 
 </string>
           </argument>
