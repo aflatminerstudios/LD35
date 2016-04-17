@@ -142,7 +142,6 @@ if (room != roomTest) {
     } else {
       --i;
     }
-    show_debug_message(i);
   }
 }
 </string>
