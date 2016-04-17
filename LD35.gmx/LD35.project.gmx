@@ -33,6 +33,7 @@
     <sprite>sprites\sprScared</sprite>
     <sprite>sprites\sprBarkPlaceholder</sprite>
     <sprite>sprites\sprBarkLines</sprite>
+    <sprite>sprites\sprCredits</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
@@ -61,6 +62,7 @@
     <object>objects\objBark</object>
     <object>objects\objBarkVisible</object>
     <object>objects\objMiniPicture</object>
+    <object>objects\objCredits</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomMain</room>

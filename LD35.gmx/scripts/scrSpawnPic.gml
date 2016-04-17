@@ -6,17 +6,20 @@ var whichSprite = choose(sprNazcaOval, sprNazcaDonut, sprNazcaA, sprHeart, sprC,
 
 gameCtrl.pic = instance_create(400,300,objNazcaPicture);
 
+/*
 var matchFound = true;
 
 while (matchFound) {
   matchFound = false;
 for (var i = 0; i < gameCtrl.howManyPics; ++i) {
+  show_debug_message("Finding sprite " + string(i));
   if (whichSprite == gameCtrl.pics[i]) {
     matchFound = true;
     break;
   }
 }
 }
+*/
 
 gameCtrl.pic.sprite_index = whichSprite;
 

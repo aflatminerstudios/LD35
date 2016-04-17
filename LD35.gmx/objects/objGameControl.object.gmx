@@ -230,7 +230,7 @@ if (timer == 0) {
             <string>///Make picture invisible and move down
 pic.visible = false;
 
-var temp = instance_create(96, 448, objMiniPicture);
+var temp = instance_create(96 + 96 * howManyPics, 448, objMiniPicture);
 temp.sprite_index = pic.sprite_index;
 temp.image_xscale = 0.1;
 temp.image_yscale = 0.1;
