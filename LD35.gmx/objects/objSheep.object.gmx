@@ -27,39 +27,50 @@
             <kind>1</kind>
             <string>///Setup default variables
 
+//Speed variables
 baseSpeed = room_speed / 60;
 
 maxSpeed = room_speed / 20;
 
 maxAvoid = room_speed / 40;
 
+
+//Determines size of local flock
 distMult = 1.5;
 
-dogMult = 4;
+//Radius around sheep at which they are scared of dog
+dogMult = 3;
 scareDist = sprite_width * dogMult;
 
+//Sets initial direction
 currentDir = irandom(360);
 changedSpriteDir = 999;
+
+//Currently not used, could add randomness to sheep's movement
 meanderDir = random_range(-5,5);
 alarm[0] = floor(random(2) * room_speed);
 
 scared = false;
 nearDog = false;
 
+//Chance of getting scared if near a scared sheep/unscared if not. Per tick.
 scareChance = 0.6;
-unscareChance = 0.4;
+unscareChance = 0.3;
 
-//For movement code 3
+//For movement code 3, still used in wander
 targetX = x;
 targetY = y;
 
-speedDist = scareDist;
+
+//speedDist = scareDist;
 
 wandering = false;
 
-eShell = 5;
 
-wanderSpeed = baseSpeed;
+//eShell = 5;
+
+//wanderSpeed = baseSpeed;
+//Limit of # seconds between wanders of a single idle sheep
 wanderTime = 40;
 
 var rTime = random(wanderTime);
@@ -69,22 +80,31 @@ alarm[1] = floor(rTime * room_speed);
 steeringX = phy_speed_x;
 steeringY = phy_speed_y;
 
+//What is considered "close" in some steering code
 closeDist = 50;
 
+//For whether scared of a bark
 barkScared = false;
 barkDist = scareDist * 1.8;
-
 nearBark = false;
 
+
+//Maybe allow scaling movement (slows down as sheep gets further from Dog)
+//Attempted it and it caused issues, may go back and try different method
 slowingRadius = scareDist * 0.2;
 barkSlowRadius = barkDist * 0.2;
 
 
 
-//For avoiding walls
+//For avoiding walls (not implemented yet)
 wallAvoiding = false;
 wallTargetX = phy_position_x;
 wallTargetY = phy_position_y;
+
+//To keep sheep from moving for 1 second after they become not scared
+//Prevents them walking towards the dog and back a lot
+unscaredTimer = 999;
+timeIdleAfterScared = 1 * room_speed;
 </string>
           </argument>
         </arguments>
@@ -763,12 +783,15 @@ var findScared = false;
 /*var numNear = 0;
 var nearSheep;*/
 
+
+
 //Determine if scared
 with (objSheep) {  
   var dist = scrEucDist(sheep, id);
   var dir = point_direction(sheep.x, sheep.y, x, y);
   
     if ((id != sheep.id) &amp;&amp; (dist &lt; global.maxDist)) {// &amp;&amp; (abs(dir - sheep.direction) &lt; 90)) {
+        
         if (nearDog || nearBark) {          
           if (random(1) &lt; scareChance) {
             sheep.scared = true;
@@ -782,11 +805,12 @@ if (!findScared &amp;&amp; random(1) &lt; unscareChance) {
   sheep.scared = false;
   sheep.barkScared = false;
   distMult = 1 + random(1);
+  unscaredTimer = 0;
 }
 
 
 if (scared) {
-
+  wandering = false
   //Reset steering
   steeringX = 0;
   steeringY = 0;
@@ -1013,46 +1037,48 @@ if (barkColl != noone) {
             <string>///Drift apart slightly if not scared
 
 if (!scared) {
-  
-  var sheep = self.id;
-  
-  var nearSheep;
-  var numNear = 0;
-  
-  with (objSheep) {
-    var dist = scrEucDist(self.id, sheep);
-    if (sheep != self.id &amp;&amp; dist &lt; sprite_width * 1.3) {
-      nearSheep[numNear++] = self.id;        
+  if (unscaredTimer &lt; timeIdleAfterScared) {
+    var sheep = self.id;
+    
+    var nearSheep;
+    var numNear = 0;
+    
+    with (objSheep) {
+      var dist = scrEucDist(self.id, sheep);
+      if (sheep != self.id &amp;&amp; dist &lt; sprite_width * 1.3) {
+        nearSheep[numNear++] = self.id;        
+      }
     }
-  }
-  
-  fleeSteeringX = 0;
-  fleeSteeringY = 0;
-  
-  if (numNear &gt; 0) {
-    for (var i = 0; i &lt; numNear; ++i) {
-      var dog = instance_find(objDog, 0);
-      
-      var dX = x - nearSheep[i].x;
-      var dY = y - nearSheep[i].y;
-       
-      
-      var desiredVec = scrNormalizeVector(dX, dY);
-      fleeSteeringX += (desiredVec[0] * baseSpeed) - phy_speed_x;
-      fleeSteeringY += (desiredVec[1] * baseSpeed) - phy_speed_y;  
+    
+    fleeSteeringX = 0;
+    fleeSteeringY = 0;
+    
+    if (numNear &gt; 0) {
+      for (var i = 0; i &lt; numNear; ++i) {
+        var dog = instance_find(objDog, 0);
+        
+        var dX = x - nearSheep[i].x;
+        var dY = y - nearSheep[i].y;
+         
+        
+        var desiredVec = scrNormalizeVector(dX, dY);
+        fleeSteeringX += (desiredVec[0] * baseSpeed) - phy_speed_x;
+        fleeSteeringY += (desiredVec[1] * baseSpeed) - phy_speed_y;  
+      }
+    } else {
+      phy_speed_x = 0;
+      phy_speed_y = 0;
     }
+    
+    steeringX = fleeSteeringX;
+    steeringY = fleeSteeringY;
+    phy_speed_x = phy_speed_x + steeringX;
+    phy_speed_x = min(abs(phy_speed_x), baseSpeed) * sign(phy_speed_x);
+    phy_speed_y = phy_speed_y + steeringY;
+    phy_speed_y = min(abs(phy_speed_y), baseSpeed) * sign(phy_speed_y);
   } else {
-    phy_speed_x = 0;
-    phy_speed_y = 0;
+    unscaredTimer++;
   }
-  
-  steeringX = fleeSteeringX;
-  steeringY = fleeSteeringY;
-  phy_speed_x = phy_speed_x + steeringX;
-  phy_speed_x = min(abs(phy_speed_x), baseSpeed) * sign(phy_speed_x);
-  phy_speed_y = phy_speed_y + steeringY;
-  phy_speed_y = min(abs(phy_speed_y), baseSpeed) * sign(phy_speed_y);
-  
 }
 </string>
           </argument>
@@ -1076,7 +1102,7 @@ if (!scared) {
             <kind>1</kind>
             <string>///Wandering code
 
-if (wandering &amp;&amp; !scared) {
+if (wandering &amp;&amp; !scared &amp;&amp; unscaredTimer &lt; timeIdleAfterScared) {
 
   if (point_distance(x, y, targetX, targetY) &lt; 5) {
     wandering = false;
@@ -1233,7 +1259,7 @@ if (phy_speed_x != 0 || phy_speed_y != 0) {
   var index = (floor(((currentDir / 11.25) + 1)/2)) % 16;
   var whichSprite = spriteArray[index];
   
-  if ((sprite_index != whichSprite) &amp;&amp; (changedSpriteDir &gt; room_speed / 3)) {
+  if ((sprite_index != whichSprite) &amp;&amp; (changedSpriteDir &gt; room_speed / 6)) {
     image_speed = 0.5;  
     sprite_index = whichSprite;
     image_index = image;
@@ -1255,12 +1281,11 @@ if (phy_speed_x != 0 || phy_speed_y != 0) {
   if ((index != image_index) &amp;&amp; (changedSpriteDir &gt; room_speed / 3)) {
     image_index = index;
     changedSpriteDir = 0;
-  }
-  
-  changedSpriteDir++;
-  
+  } 
   
 }
+
+  changedSpriteDir++;
 </string>
           </argument>
         </arguments>

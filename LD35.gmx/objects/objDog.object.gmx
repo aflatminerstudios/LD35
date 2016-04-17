@@ -25,23 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Setup default variables
-
-moveSpeed = room_speed / 12;
-baseSpeed = moveSpeed;
-
-canBark = true;
-barkCooldown = 5 * room_speed;
-
-maxSprint = 100;
-currentSprint = maxSprint;
-sprinting = false;
-
-sneaking = false;
-
-moveVec[0] = 0;
-moveVec[1] = 0;
-moveDir = 0;
+            <string>/// Create shadow
+myShadow = instance_create(x, y+50, objShadow)
+myShadow.parent = self.id;
 </string>
           </argument>
         </arguments>
@@ -62,9 +48,23 @@ moveDir = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Create shadow
-myShadow = instance_create(x, y+50, objShadow)
-myShadow.parent = self.id;
+            <string>///Setup default variables
+
+moveSpeed = room_speed / 12;
+baseSpeed = moveSpeed;
+
+canBark = true;
+barkCooldown = 5 * room_speed;
+
+maxSprint = 100;
+currentSprint = maxSprint;
+sprinting = false;
+
+sneaking = false;
+
+moveVec[0] = 0;
+moveVec[1] = 0;
+moveDir = 0;
 </string>
           </argument>
         </arguments>
