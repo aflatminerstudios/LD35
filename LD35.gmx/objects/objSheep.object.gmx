@@ -109,7 +109,24 @@ wallTargetY = phy_position_y;
 
 
 numSprites = 16;
-spriteArray[0] = sprSheepRunRight;
+
+spriteArray[15] = sprSheepESE;
+spriteArray[14] = sprSheepSE;
+spriteArray[13] = sprSheepSSE;
+spriteArray[12] = sprSheepRunSouth;
+spriteArray[11] = sprSheepSSW;
+spriteArray[10] = sprSheepSW;
+spriteArray[9] = sprSheepWSW;
+spriteArray[8] = sprSheepRunWest;
+spriteArray[7] = sprSheepWNW;
+spriteArray[6] = sprSheepNW;
+spriteArray[5] = sprSheepNNW;
+spriteArray[4] = sprSheepRunNorth;
+spriteArray[3] = sprSheepNNE;
+spriteArray[2] = sprSheepNE;
+spriteArray[1] = sprSheepENE;
+spriteArray[0] = sprSheepRunEast;
+
 
 
 </string>
@@ -1153,9 +1170,28 @@ if (newy &lt; 52 ) {
 if (phy_speed_x != 0 || phy_speed_y != 0) {
   //If moving
   
+    
+  //Get proper image index
+  if (sprite_index == sprSheepStatic) {
+    var image = 0;
+  } else {
+    var image = image_index;
+  }
+  
+  //Get current direction
   currentDir = point_direction(0, 0, phy_speed_x, phy_speed_y) 
   
-} //else {
+  var index = (floor(((currentDir / 11.25) + 1)/2)) % 16;
+  var whichSprite = spriteArray[index];
+  
+  if ((sprite_index != whichSprite) &amp;&amp; (changedSpriteDir &gt; room_speed / 3)) {
+    image_speed = 0.5;  
+    sprite_index = whichSprite;
+    image_index = image;
+    changedSpriteDir = 0;
+  }
+  
+} else {
   image_speed = 0;
   //If not moving
   //make sure in the right sprite
@@ -1175,7 +1211,7 @@ if (phy_speed_x != 0 || phy_speed_y != 0) {
   changedSpriteDir++;
   
   
-//}
+}
 </string>
           </argument>
         </arguments>

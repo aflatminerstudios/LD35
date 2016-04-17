@@ -24,10 +24,24 @@
       <sprite>sprites\sprHeart</sprite>
     </sprites>
     <sprites name="Sheep">
-      <sprite>sprites\sprSheepRunRight</sprite>
-      <sprite>sprites\sprSheepRunLeft</sprite>
-      <sprite>sprites\sprSheepRunUp</sprite>
-      <sprite>sprites\sprSheepRunDown</sprite>
+      <sprites name="Running">
+        <sprite>sprites\sprSheepRunEast</sprite>
+        <sprite>sprites\sprSheepRunWest</sprite>
+        <sprite>sprites\sprSheepRunNorth</sprite>
+        <sprite>sprites\sprSheepRunSouth</sprite>
+        <sprite>sprites\sprSheepSSW</sprite>
+        <sprite>sprites\sprSheepSW</sprite>
+        <sprite>sprites\sprSheepWSW</sprite>
+        <sprite>sprites\sprSheepWNW</sprite>
+        <sprite>sprites\sprSheepNW</sprite>
+        <sprite>sprites\sprSheepNNW</sprite>
+        <sprite>sprites\sprSheepSSE</sprite>
+        <sprite>sprites\sprSheepSE</sprite>
+        <sprite>sprites\sprSheepESE</sprite>
+        <sprite>sprites\sprSheepENE</sprite>
+        <sprite>sprites\sprSheepNE</sprite>
+        <sprite>sprites\sprSheepNNE</sprite>
+      </sprites>
       <sprite>sprites\sprSheepStatic</sprite>
     </sprites>
     <sprite>sprites\sprSheepPlaceholder</sprite>
