@@ -31,6 +31,7 @@ moveSpeed = room_speed / 12;
 baseSpeed = moveSpeed;
 
 canBark = true;
+barkCooldown = 5 * room_speed;
 
 maxSprint = 100;
 currentSprint = maxSprint;
@@ -307,7 +308,7 @@ if (canBark) {
   var barkV = instance_create(x, y, objBarkVisible);
   bark.parent = self.id;
   barkV.parent = self.id;
-  alarm[0] = 6 * room_speed;
+  alarm[0] = barkCooldown;
   canBark = false;
   
   
