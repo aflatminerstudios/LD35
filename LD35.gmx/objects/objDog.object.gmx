@@ -25,9 +25,25 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Create shadow
-myShadow = instance_create(x, y+50, objShadow)
-myShadow.parent = self.id;
+            <string>///Setup default variables
+
+moveSpeed = room_speed / 12;
+baseSpeed = moveSpeed;
+
+canBark = true;
+//How often can bark
+barkCooldown = audio_sound_length(sndBark)*room_speed*0.9; // 90% of back sound length
+
+//Number of ticks can sprint
+maxSprint = 100;
+currentSprint = maxSprint;
+sprinting = false;
+
+sneaking = false;
+
+moveVec[0] = 0;
+moveVec[1] = 0;
+moveDir = 0;
 </string>
           </argument>
         </arguments>
@@ -48,25 +64,9 @@ myShadow.parent = self.id;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Setup default variables
-
-moveSpeed = room_speed / 12;
-baseSpeed = moveSpeed;
-
-canBark = true;
-//How often can bark
-barkCooldown = 5 * room_speed;
-
-//Number of ticks can sprint
-maxSprint = 100;
-currentSprint = maxSprint;
-sprinting = false;
-
-sneaking = false;
-
-moveVec[0] = 0;
-moveVec[1] = 0;
-moveDir = 0;
+            <string>/// Create shadow
+myShadow = instance_create(x, y+50, objShadow)
+myShadow.parent = self.id;
 </string>
           </argument>
         </arguments>
@@ -364,8 +364,8 @@ if (canBark) {
   
   
   barkV.image_angle = point_direction(0, 0, phy_speed_x, phy_speed_y) + 180;
-  
-  audio_play_sound(sndBark, 100, false);  
+  var barkSound = choose(sndBark, sndBark2, sndBark3);
+  audio_play_sound(barkSound, 100, false);  
 }
 </string>
           </argument>

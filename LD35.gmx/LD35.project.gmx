@@ -6,6 +6,8 @@
   <NewExtensions/>
   <sounds name="sound">
     <sound>sound\sndBark</sound>
+    <sound>sound\sndBark2</sound>
+    <sound>sound\sndBark3</sound>
     <sound>sound\sndLogoTheme</sound>
   </sounds>
   <sprites name="sprites">
