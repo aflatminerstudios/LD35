@@ -99,6 +99,7 @@
     <sprite>sprites\sprLevelSelecter</sprite>
     <sprite>sprites\sprLevelUnselect</sprite>
     <sprite>sprites\sprLevelSelectTitle</sprite>
+    <sprite>sprites\sprBucky</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
@@ -153,6 +154,7 @@
     <object>objects\objLevelSelectControl</object>
     <object>objects\objCourseInfo</object>
     <object>objects\objLevelSelectTitle</object>
+    <object>objects\objBucky</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomLogo</room>
