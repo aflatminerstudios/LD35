@@ -83,6 +83,9 @@
     <sprite>sprites\sprLoosePage</sprite>
     <sprite>sprites\sprStopwatch</sprite>
     <sprite>sprites\sprSprintMeter</sprite>
+    <sprite>sprites\sprLevelSelecter</sprite>
+    <sprite>sprites\sprLevelUnselect</sprite>
+    <sprite>sprites\sprLevelSelectTitle</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
@@ -110,11 +113,11 @@
     <object>objects\objCanCollide</object>
     <object>objects\objSheep</object>
     <object>objects\objNazcaPicture</object>
-    <object>objects\objGameControl</object>
     <object>objects\objCredits</object>
     <object>objects\objGlobals</object>
     <object>objects\objBark</object>
     <object>objects\objBarkVisible</object>
+    <object>objects\objGameControl</object>
     <object>objects\objMiniPicture</object>
     <objects name="Clouds">
       <object>objects\objCloudShadow</object>
@@ -133,6 +136,10 @@
     <object>objects\objLoosePage</object>
     <object>objects\objStopwatch</object>
     <object>objects\objSprintMeter</object>
+    <object>objects\objLevelSelecter</object>
+    <object>objects\objLevelSelectControl</object>
+    <object>objects\objCourseInfo</object>
+    <object>objects\objLevelSelectTitle</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomLogo</room>

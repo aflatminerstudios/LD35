@@ -2,7 +2,7 @@
 
 var gameCtrl = argument0;
 
-var whichSprite = choose(sprNazcaOval, sprNazcaDonut, sprNazcaA, sprHeart, sprC, sprCircle, sprCorners, sprDoomSpiral, sprH);
+var whichSprite = gameCtrl.pics[global.numComplete];//choose(sprNazcaOval, sprNazcaDonut, sprNazcaA, sprHeart, sprC, sprCircle, sprCorners, sprDoomSpiral, sprH);
 show_debug_message("Picked new image in scrSpawnPic.")
 gameCtrl.pic = instance_create(400,300,objNazcaPicture);
 gameCtrl.ready = false;
@@ -24,7 +24,7 @@ for (var i = 0; i < gameCtrl.howManyPics; ++i) {
 
 gameCtrl.pic.sprite_index = whichSprite;
 
-gameCtrl.pics[gameCtrl.howManyPics] = gameCtrl.pic.sprite_index;
+//gameCtrl.pics[gameCtrl.howManyPics] = gameCtrl.pic.sprite_index;
 
 alarm[0] = 1 * room_speed;
 

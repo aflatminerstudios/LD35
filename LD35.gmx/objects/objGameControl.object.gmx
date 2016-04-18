@@ -50,15 +50,20 @@ randomize();
             <kind>1</kind>
             <string>///Picture variables/spawn
 
+
+alarm[11] = 1;
+
 pic = noone;
 minipics[0] = noone;
 howManyPics = 0;
+
+
 pics[0] = noone;
 
 picsPerGame = 5;
 timeBetweenRounds = 3;
 
-scrSpawnPic(self.id);
+///scrSpawnPic(self.id);
 
 //For indicating if picture drawing is still going
 ending = false;
@@ -247,6 +252,45 @@ global.numComplete = 0;
             <string>///Stop music
 
 audio_stop_sound(music);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Picture spawn
+pic = noone;
+minipics[0] = noone;
+howManyPics = 0;
+
+ci = instance_find(objCourseInfo, 0);
+
+if (ci != noone) {
+  show_debug_message(global.whichCourse);
+  picsPerGame = ci.numLevels[global.whichCourse];
+  pics =  ci.courseVars[global.whichCourse];
+  
+
+  timeBetweenRounds = 3;
+  
+  scrSpawnPic(self.id);
+}
 </string>
           </argument>
         </arguments>

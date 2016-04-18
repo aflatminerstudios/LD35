@@ -25,43 +25,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Create globals
+            <string>///Contains info about courses
+numCourses = 1;
 
-global.maxDist = 100;
-
-// Information passing between roomLevelSelect and roomMain
-// Each course is called a test, with levels inside (1-1, 1-2, 1-3, 2-1, 2-2, etc.)
-global.currentCourse = 1;
-global.currentLevel = 1;
-
-global.pcts[0] = 0;
-global.numComplete = 0;
-global.times[0] = 0;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///For level selecting
-global.whichCourse = 1;
+C1[0] = sprCircle;
+C1[1] = sprCorners;
+C1[2] = sprHeart;
+C1[3] = sprH;
+C1[4] = sprDoomSpiral;
 
 
-
+courseVars[0] = C1;
+numLevels[0] = 5;
 </string>
           </argument>
         </arguments>
