@@ -3,7 +3,7 @@
 var gameCtrl = argument0;
 
 var whichSprite = choose(sprNazcaOval, sprNazcaDonut, sprNazcaA, sprHeart, sprC, sprCircle, sprCorners, sprDoomSpiral, sprH);
-
+show_debug_message("Picked new image in scrSpawnPic.")
 gameCtrl.pic = instance_create(400,300,objNazcaPicture);
 gameCtrl.ready = false;
 

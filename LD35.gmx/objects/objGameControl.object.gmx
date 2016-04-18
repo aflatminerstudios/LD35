@@ -335,17 +335,15 @@ if (timer == 0) {
             <string>///Make picture invisible and move down
 pic.visible = false;
 
+/*
 var temp = instance_create(96 + 96 * howManyPics, 542, objMiniPicture);
 temp.sprite_index = pic.sprite_index;
 temp.image_xscale = 0.1;
 temp.image_yscale = 0.1;
 
-
-
 miniPics[howManyPics++] = temp;
-
+*/
 ready = true;
-
 </string>
           </argument>
         </arguments>
