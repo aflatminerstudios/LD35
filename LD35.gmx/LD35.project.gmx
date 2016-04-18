@@ -51,6 +51,16 @@
     <sprite>sprites\sprSheepPlaceholder</sprite>
     <sprite>sprites\sprScared</sprite>
     <sprite>sprites\sprBarkPlaceholder</sprite>
+    <sprites name="Dog">
+      <sprite>sprites\sprDogS</sprite>
+      <sprite>sprites\sprDogSW</sprite>
+      <sprite>sprites\sprDogW</sprite>
+      <sprite>sprites\sprDogNW</sprite>
+      <sprite>sprites\sprDogN</sprite>
+      <sprite>sprites\sprDogSE</sprite>
+      <sprite>sprites\sprDogE</sprite>
+      <sprite>sprites\sprDogNE</sprite>
+    </sprites>
     <sprite>sprites\sprBarkLines</sprite>
     <sprite>sprites\sprCredits</sprite>
     <sprites name="Clouds">
