@@ -105,6 +105,7 @@
     <sprite>sprites\sprLevelSelectTitle</sprite>
     <sprite>sprites\sprBucky</sprite>
     <sprite>sprites\sprInstructions</sprite>
+    <sprite>sprites\sprCountdown</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
@@ -164,6 +165,7 @@
     <object>objects\objBucky</object>
     <object>objects\objGameOver</object>
     <object>objects\objInstructions</object>
+    <object>objects\objCountdown</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomLogo</room>

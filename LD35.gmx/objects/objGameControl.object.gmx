@@ -529,7 +529,7 @@ if (keyboard_check_pressed(vk_escape)) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw countdown timer
+            <string>///Play countdown sound
 
 var go = instance_find(objGameOver, 0);
 
@@ -542,7 +542,7 @@ if (ending &amp;&amp; go == noone) {
     audio_play_sound(sndCountdown, 100, false);
     timerOn = cntTimer;
   }
-  draw_text_transformed_colour(400, 300, string(cntTimer), 10, 10, 0, c_red, c_red, c_red, c_red, 100);
+//  draw_text_transformed_colour(400, 300, string(cntTimer), 10, 10, 0, c_red, c_red, c_red, c_red, 100);
 }
 </string>
           </argument>
