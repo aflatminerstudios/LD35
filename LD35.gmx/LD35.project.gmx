@@ -64,6 +64,7 @@
     <sprite>sprites\sprLogo</sprite>
     <sprite>sprites\sprFarmer</sprite>
     <sprite>sprites\sprGameOver</sprite>
+    <sprite>sprites\sprFenceForeground</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
@@ -104,6 +105,7 @@
     <object>objects\objShadow</object>
     <object>objects\objFarmer</object>
     <object>objects\objGameOver</object>
+    <object>objects\objFenceForeground</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomLogo</room>
