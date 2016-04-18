@@ -61,6 +61,10 @@
     </sprites>
     <sprite>sprites\sprTitleScreen</sprite>
     <sprite>sprites\sprLevelSelect</sprite>
+    <sprites name="Bird">
+      <sprite>sprites\sprBird</sprite>
+      <sprite>sprites\sprBirdFly</sprite>
+    </sprites>
     <sprite>sprites\sprLogo</sprite>
     <sprite>sprites\sprFarmer</sprite>
     <sprite>sprites\sprGameOver</sprite>
@@ -106,6 +110,8 @@
     <object>objects\objFarmer</object>
     <object>objects\objGameOver</object>
     <object>objects\objFenceForeground</object>
+    <object>objects\objBird</object>
+    <object>objects\objBirdSpawner</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomLogo</room>
