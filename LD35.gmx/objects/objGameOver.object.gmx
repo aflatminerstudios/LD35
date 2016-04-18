@@ -28,6 +28,8 @@
             <string>///Default variables
 
 ready = false;
+
+image_speed = 0.4;
 </string>
           </argument>
         </arguments>
@@ -75,11 +77,39 @@ ready = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Check for exit
+            <string>///Check for exit
 if (ready &amp;&amp; keyboard_check(vk_anykey)) {
   audio_stop_sound(sndMainTheme);
   room_goto(roomLevelSelect);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="7">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///End animation and start timer for "press any key to continue"
+
+image_speed = 0;
+image_index = 9;
+
+alarm[0] = room_speed;
 </string>
           </argument>
         </arguments>
@@ -105,13 +135,76 @@ if (ready &amp;&amp; keyboard_check(vk_anykey)) {
             <string>///Draw and add text
 
 draw_self();
+
+draw_set_valign(fa_middle);
+draw_set_halign(fa_center);
+
+
+draw_text(340, 115, global.scores[0]);
+draw_text(340, 186, global.scores[0]);
+draw_text(340, 257, global.scores[0]);
+draw_text(340, 328, global.scores[0]);
+draw_text(340, 406, global.scores[0]);
+
+var times;
+times[0] = global.times[0] / room_speed;
+times[1] = (global.times[1] - global.times[0]) / room_speed;
+times[2] = (global.times[2] - global.times[1]) / room_speed;
+times[3] = (global.times[3] - global.times[2]) / room_speed;
+times[4] = (global.times[4] - global.times[3]) / room_speed;
+
+draw_text(510, 115, string_format(times[0], 4, 2) + " s");
+draw_text(510, 186, string_format(times[1], 4, 2) + " s");
+draw_text(510, 257, string_format(times[2], 4, 2) + " s");
+draw_text(510, 328, string_format(times[3], 4, 2) + " s");
+draw_text(510, 406, string_format(times[4], 4, 2) + " s");
+
+draw_set_font(fontBasic_mediumLarge);
+var totalTime = global.times[global.numComplete - 1] / room_speed;
+draw_text(510, 465, string_format(totalTime, 4, 2) + " s");
+
+draw_set_halign(fa_center);
+draw_set_font(fontBasic_large);
+draw_text(310, 465, string(score));
+
+draw_set_font(fontBasic_medium);
 if (ready) {
-  draw_text(300, 410, "Press any key to continue.");
+  draw_text(400, 580, "Press any key to continue.");
 }
+draw_set_halign(fa_left);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw mini versions of the drawings
 
-draw_text(454, 258, string(score));
+var gc = instance_find(objGameControl, 0);
 
-draw_text(465, 340, string(floor(global.times[global.numComplete - 1] / room_speed)) + " s");
+if (gc != noone) {
+
+  draw_sprite_ext(gc.pics[0], 0, 257, 113, 0.07, 0.07, 0, c_white, 100);
+  draw_sprite_ext(gc.pics[1], 0, 257, 188, 0.07, 0.07, 0, c_white, 100);
+  draw_sprite_ext(gc.pics[2], 0, 257, 258, 0.07, 0.07, 0, c_white, 100);
+  draw_sprite_ext(gc.pics[3], 0, 257, 332, 0.07, 0.07, 0, c_white, 100);
+  draw_sprite_ext(gc.pics[4], 0, 257, 405, 0.07, 0.07, 0, c_white, 100);
+
+}
 </string>
           </argument>
         </arguments>

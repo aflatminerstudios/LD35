@@ -455,43 +455,6 @@ changedSpriteDir++;
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Draws indicators for dog stuff
-
-var color = c_green;
-
-if (currentSprint &lt;= (0.2 * maxSprint)) {
-  color = c_red;    
-}
-
-draw_text_color(100, 25, string(currentSprint) + " / " + string(maxSprint), color, color, color, color, 100);
-
-if (canBark) {
-  draw_text_color(300, 25, "Can bark!", c_green, c_green, c_green, c_green, 100);
-} else {
-  draw_text_color(300, 25, "Can't bark", c_red, c_red, c_red, c_red, 100);
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="9" enumb="32">
       <action>
         <libid>1</libid>
@@ -524,8 +487,8 @@ if (canBark) {
   barkV.image_angle = currentDir + 180;//point_direction(0, 0, phy_speed_x, phy_speed_y);
   var barkSound = choose(sndBark, sndBark2, sndBark3);
   audio_play_sound(barkSound, 100, false);  
-  
-  alarm[0] = audio_sound_length(barkSound)*room_speed*0.9; // 90% of back sound length
+  show_debug_message(audio_sound_length(barkSound));
+  alarm[0] = audio_sound_length(barkSound)*room_speed * 0.9; // 90% of bark sound length
 }
 </string>
           </argument>

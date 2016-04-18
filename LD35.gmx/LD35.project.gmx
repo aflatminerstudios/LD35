@@ -104,6 +104,7 @@
     <sprite>sprites\sprLevelUnselect</sprite>
     <sprite>sprites\sprLevelSelectTitle</sprite>
     <sprite>sprites\sprBucky</sprite>
+    <sprite>sprites\sprInstructions</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
@@ -125,6 +126,9 @@
   </scripts>
   <fonts name="fonts">
     <font>fonts\fontDigital7_Medium</font>
+    <font>fonts\fontBasic_medium</font>
+    <font>fonts\fontBasic_large</font>
+    <font>fonts\fontBasic_mediumLarge</font>
   </fonts>
   <objects name="objects">
     <object>objects\objDog</object>
@@ -146,7 +150,6 @@
     <object>objects\objLogo</object>
     <object>objects\objShadow</object>
     <object>objects\objFarmer</object>
-    <object>objects\objGameOver</object>
     <object>objects\objFenceForeground</object>
     <object>objects\objBird</object>
     <object>objects\objBirdSpawner</object>
@@ -159,6 +162,8 @@
     <object>objects\objCourseInfo</object>
     <object>objects\objLevelSelectTitle</object>
     <object>objects\objBucky</object>
+    <object>objects\objGameOver</object>
+    <object>objects\objInstructions</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomLogo</room>

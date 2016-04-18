@@ -89,7 +89,7 @@ if (point_distance(x, y, dog.phy_position_x, dog.phy_position_y) &lt; dogDist) {
           <argument>
             <kind>1</kind>
             <string>///Look for bark near
-
+/*
 
 var bark = instance_find(objBark, 0);
 var gc = instance_find(objGameControl, 0);
@@ -105,7 +105,9 @@ if (bark != noone &amp;&amp; point_distance(x, y, bark.x, bark.y) &lt; barkDist)
     gc.ending = false;
     gc.alarm[2] = -1;
   }*/
-}
+//}
+
+
 </string>
           </argument>
         </arguments>

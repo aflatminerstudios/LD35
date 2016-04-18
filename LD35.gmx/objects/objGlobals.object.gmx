@@ -37,6 +37,7 @@ global.currentLevel = 1;
 global.pcts[0] = 0;
 global.numComplete = 0;
 global.times[0] = 0;
+global.scores[0] = 0;
 </string>
           </argument>
         </arguments>

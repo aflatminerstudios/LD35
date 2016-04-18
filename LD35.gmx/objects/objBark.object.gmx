@@ -30,6 +30,41 @@
 parent = noone;
 
 alarm[0] = 1 * room_speed;
+alarm[1] = 1;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check for farmer
+
+var farmer = instance_find(objFarmer, 0);
+var gc = instance_find(objGameControl, 0);
+
+if (farmer != noone &amp;&amp; point_distance(parent.phy_position_x, parent.phy_position_y, farmer.x, farmer.y) &lt; farmer.barkDist) {  
+  if (!gc.ending || gc.alarm[2] &lt; 0) {
+    gc.ending = true;
+    scrEndPicture(gc.pic, gc);
+  } 
+}
 </string>
           </argument>
         </arguments>

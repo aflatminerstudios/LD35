@@ -174,7 +174,7 @@ if (room != roomTest) {
 
 music = sndMainTheme;
 
-audio_play_sound(music, 100, true);
+audio_play_sound(music, 0, true);
 </string>
           </argument>
         </arguments>
@@ -279,7 +279,7 @@ audio_stop_sound(music);
             <string>///Picture spawn
 pic = noone;
 minipics[0] = noone;
-howManyPics = 0;
+
 
 ci = instance_find(objCourseInfo, 0);
 
@@ -288,11 +288,32 @@ if (ci != noone) {
   picsPerGame = ci.numLevels[global.whichCourse];
   pics =  ci.courseVars[global.whichCourse];
   
-
-  timeBetweenRounds = 3;
-  
   scrSpawnPic(self.id);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///End game
+scrEndGame();
 </string>
           </argument>
         </arguments>
@@ -315,13 +336,26 @@ if (ci != noone) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Spawn new picture
+            <string>///Spawn new picture or end game, also score
+
+
+
+global.pcts[global.numComplete] = scrGetPicturePercent(pic);
+global.times[global.numComplete] = timer;
+
+global.numComplete++;
+
+
 
 with (pic) {
   instance_destroy();
 }
 
-scrSpawnPic(self.id);
+if (howManyPics &lt; (picsPerGame)) {
+  scrSpawnPic(self.id);
+} else {
+  scrEndGame();
+}
 
 ending = false;
 </string>
@@ -495,35 +529,15 @@ if (keyboard_check_pressed(vk_escape)) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Timer
-
-draw_text_color(500, 20, string(floor(timer / room_speed)), c_red, c_red, c_red, c_red, 100);
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Draw countdown timer
 
 var go = instance_find(objGameOver, 0);
 
 if (ending &amp;&amp; go == noone) {
   var cntTimer = (floor(alarm[2] / room_speed)) + 1;
+  /*if (alarm[2] &lt;= 0) {
+    cntTimer = (floor(alarm[3] / room_speed)) + 1;
+  }*/
   if (timerOn != cntTimer) {
     audio_play_sound(sndCountdown, 100, false);
     timerOn = cntTimer;
