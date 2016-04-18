@@ -44,7 +44,12 @@ sneaking = false;
 moveVec[0] = 0;
 moveVec[1] = 0;
 moveDir = 0;
-			</string>
+
+currentDir = 0;
+arrayIndex = 0;
+
+changedSpriteDir = 999;
+</string>
           </argument>
         </arguments>
       </action>
@@ -68,6 +73,36 @@ moveDir = 0;
 myShadow = instance_create(x, y+50, objShadow)
 myShadow.parent = self.id;
 			</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Sprite Array
+
+spriteArray[0] = sprDogE;
+spriteArray[1] = sprDogNE;
+spriteArray[2] = sprDogN;
+spriteArray[3] = sprDogNW;
+spriteArray[4] = sprDogW;
+spriteArray[5] = sprDogSW;
+spriteArray[6] = sprDogS;
+spriteArray[7] = sprDogSE;
+</string>
           </argument>
         </arguments>
       </action>
@@ -205,9 +240,9 @@ if (newx &lt; 0) {
 if (newy &lt; 22 ) {
   phy_speed_y = 0;
   phy_position_y = 22
-} else if (newy &gt; 512) {
+} else if (newy &gt; 482) {
   phy_speed_y = 0;
-  phy_position_y = 512;
+  phy_position_y = 482;
 }
 </string>
           </argument>
@@ -273,6 +308,77 @@ if (sneaking &amp;&amp; !keyboard_check(vk_shift)) {
   sneaking = true;
   moveSpeed *= 0.75;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Sprite handling
+
+//If moving
+if (phy_speed_x != 0 || phy_speed_y != 0) {
+
+  //Get proper image index
+  if (sprite_index == sprDog) {
+    var image = 0;
+  } else {
+    var image = image_index;
+  }
+
+  //Get current direction
+  currentDir = point_direction(0, 0, phy_speed_x, phy_speed_y);
+  
+  var index = (floor(((currentDir / 22.5) + 1)/2)) % 8;
+  
+  if (arrayIndex != index &amp;&amp; changedSpriteDir &gt; (room_speed / 10)) {
+    image_speed = 0.5;
+
+    
+    var s = sign(arrayIndex - index);    
+    var nextIndex = (arrayIndex - (s));
+    if (nextIndex &lt; 0) {
+      nextIndex = 8 + nextIndex;
+    }
+    
+    if (index == 0) {
+      nextIndex = arrayIndex + 1;
+    }
+    
+    nextIndex %= 8;
+    
+    image_index = image;
+    sprite_index = spriteArray[nextIndex];
+    arrayIndex = nextIndex;
+
+    changedSpriteDir = 0;
+  }
+
+  
+} else {
+//If not moving
+  image_speed = 0;
+  
+  if (sprite_index != sprDog) {
+    sprite_index = sprDog;
+  }
+}
+
+changedSpriteDir++;
 </string>
           </argument>
         </arguments>
