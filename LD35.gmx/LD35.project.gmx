@@ -71,6 +71,8 @@
     <sprite>sprites\sprFenceForeground</sprite>
     <sprite>sprites\sprSignPost</sprite>
     <sprite>sprites\sprLoosePage</sprite>
+    <sprite>sprites\sprStopwatch</sprite>
+    <sprite>sprites\sprSprintMeter</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
@@ -90,6 +92,9 @@
     <script>scripts\scrSpawnPic.gml</script>
     <script>scripts\scrEndGame.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fontDigital7_Medium</font>
+  </fonts>
   <objects name="objects">
     <object>objects\objDog</object>
     <object>objects\objCanCollide</object>
@@ -116,6 +121,8 @@
     <object>objects\objBirdSpawner</object>
     <object>objects\objSignPost</object>
     <object>objects\objLoosePage</object>
+    <object>objects\objStopwatch</object>
+    <object>objects\objSprintMeter</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomLogo</room>
