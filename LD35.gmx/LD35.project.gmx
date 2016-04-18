@@ -60,6 +60,7 @@
       <sprite>sprites\sprCloudShadow4</sprite>
     </sprites>
     <sprite>sprites\sprTitleScreen</sprite>
+    <sprite>sprites\sprLevelSelect</sprite>
     <sprite>sprites\sprLogo</sprite>
     <sprite>sprites\sprFarmer</sprite>
   </sprites>
@@ -97,6 +98,7 @@
       <object>objects\objCloudGenerator</object>
     </objects>
     <object>objects\objTitle</object>
+    <object>objects\objLevelSelect</object>
     <object>objects\objLogo</object>
     <object>objects\objShadow</object>
     <object>objects\objFarmer</object>
