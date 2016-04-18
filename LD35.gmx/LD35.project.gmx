@@ -66,10 +66,15 @@
       <sprite>sprites\sprRightSemi</sprite>
       <sprite>sprites\sprPenis</sprite>
       <sprite>sprites\sprQuestion</sprite>
+      <sprite>sprites\sprDoritos</sprite>
+      <sprite>sprites\sprPaw</sprite>
+      <sprite>sprites\sprLessDoritos</sprite>
+      <sprite>sprites\sprAFlat</sprite>
+      <sprite>sprites\sprBarkPlaceholder</sprite>
+      <sprite>sprites\sprBlobby</sprite>
     </sprites>
     <sprite>sprites\sprSheepPlaceholder</sprite>
     <sprite>sprites\sprScared</sprite>
-    <sprite>sprites\sprBarkPlaceholder</sprite>
     <sprite>sprites\sprC</sprite>
     <sprites name="Dog">
       <sprite>sprites\sprDogS</sprite>

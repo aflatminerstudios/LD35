@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///Contains info about courses
-numCourses = 4;
+numCourses = 5;
 
 C0[0] = sprCircle;
 C0[1] = sprThinRect;
@@ -52,6 +52,12 @@ C3[2] = sprRightSemi;
 C3[3] = sprPenis;
 C3[4] = sprQuestion;
 
+C4[0] = sprDoritos;
+C4[1] = sprPaw;
+C4[2] = sprLessDoritos;
+C4[3] = sprBlobby;
+C4[4] = sprAFlat;
+
 courseVars[0] = C0;
 numLevels[0] = 5;
 
@@ -63,6 +69,9 @@ numLevels[2] = 5;
 
 courseVars[3] = C3;
 numLevels[3] = 5;
+
+courseVars[4] = C4;
+numLevels[4] = 5;
 </string>
           </argument>
         </arguments>
