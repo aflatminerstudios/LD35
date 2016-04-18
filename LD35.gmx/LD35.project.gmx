@@ -110,8 +110,8 @@
   <rooms name="rooms">
     <room>rooms\roomLogo</room>
     <room>rooms\roomTitle</room>
-    <room>rooms\roomMain</room>
     <room>rooms\roomTest</room>
+    <room>rooms\roomMain</room>
     <room>rooms\roomCredits</room>
     <room>rooms\roomInstructions</room>
     <room>rooms\roomGameOver</room>
