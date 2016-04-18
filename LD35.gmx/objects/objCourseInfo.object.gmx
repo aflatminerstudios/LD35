@@ -29,10 +29,10 @@
 numCourses = 1;
 
 C1[0] = sprCircle;
-C1[1] = sprCorners;
-C1[2] = sprHeart;
-C1[3] = sprH;
-C1[4] = sprDoomSpiral;
+C1[1] = sprThinRect;
+C1[2] = sprCorners;
+C1[3] = sprHeart;
+C1[4] = sprTriangle;
 
 
 courseVars[0] = C1;

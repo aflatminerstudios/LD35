@@ -32,6 +32,8 @@ image_speed = 0;
 courseNum = 0;
 
 currentlySelected = false;
+
+name = " ";
 </string>
           </argument>
         </arguments>
@@ -123,12 +125,12 @@ if (sprite_index == sprLevelSelecter) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw Course #
+            <string>///Draw Course Name
 
 draw_self();
 
 draw_set_halign(fa_center);
-draw_text(x, y + sprite_height/2 + 15, "Course " + string(courseNum + 1));
+draw_text(x, y + sprite_height/2 + 15, name);
 
 draw_set_halign(fa_left);
 </string>

@@ -21,11 +21,8 @@
       <sprite>sprites\sprNazcaOval</sprite>
       <sprite>sprites\sprNazcaDonut</sprite>
       <sprite>sprites\sprNazcaA</sprite>
-      <sprite>sprites\sprCircle</sprite>
-      <sprite>sprites\sprCorners</sprite>
       <sprite>sprites\sprH</sprite>
       <sprite>sprites\sprDoomSpiral</sprite>
-      <sprite>sprites\sprHeart</sprite>
     </sprites>
     <sprites name="Sheep">
       <sprites name="Running">
@@ -47,6 +44,13 @@
         <sprite>sprites\sprSheepNNE</sprite>
       </sprites>
       <sprite>sprites\sprSheepStatic</sprite>
+    </sprites>
+    <sprites name="Pictures">
+      <sprite>sprites\sprCorners</sprite>
+      <sprite>sprites\sprCircle</sprite>
+      <sprite>sprites\sprHeart</sprite>
+      <sprite>sprites\sprThinRect</sprite>
+      <sprite>sprites\sprTriangle</sprite>
     </sprites>
     <sprite>sprites\sprSheepPlaceholder</sprite>
     <sprite>sprites\sprScared</sprite>
