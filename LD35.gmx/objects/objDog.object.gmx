@@ -31,7 +31,7 @@ moveSpeed = room_speed / 12;
 baseSpeed = moveSpeed;
 
 canBark = true;
-//How often can bark
+//How often can bark //NOT USED NOW
 barkCooldown = audio_sound_length(sndBark)*room_speed*0.9; // 90% of back sound length
 
 //Number of ticks can sprint
@@ -517,13 +517,15 @@ if (canBark) {
   var barkV = instance_create(x, y, objBarkVisible);
   bark.parent = self.id;
   barkV.parent = self.id;
-  alarm[0] = barkCooldown;
+
   canBark = false;
   
   
   barkV.image_angle = currentDir + 180;//point_direction(0, 0, phy_speed_x, phy_speed_y);
   var barkSound = choose(sndBark, sndBark2, sndBark3);
   audio_play_sound(barkSound, 100, false);  
+  
+  alarm[0] = audio_sound_length(barkSound)*room_speed*0.9; // 90% of back sound length
 }
 </string>
           </argument>

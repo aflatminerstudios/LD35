@@ -257,7 +257,7 @@ if (!entering &amp;&amp; !leaving) {
     }
   }
   
-  if (dogDist &lt; 45 || sheepDist &lt; 20) {
+  if (dogDist &lt; 35 || sheepDist &lt; 20) {
     alarm[1] = 1;
   }
 }

@@ -75,7 +75,9 @@ ready = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (ready &amp;&amp; keyboard_check(vk_anykey)) {
+            <string>//Check for exit
+if (ready &amp;&amp; keyboard_check(vk_anykey)) {
+  audio_stop_sound(sndMainTheme);
   room_goto(roomLevelSelect);
 }
 </string>
