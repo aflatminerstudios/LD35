@@ -29,12 +29,18 @@
 image_speed = 0.05;
 entering = true;
 leaving = false;
+hopping = false;
 
 targetX = irandom(room_width - 100) + 50;
 targetY = irandom(room_width - 250) + 70;
 
 flySpeed = room_speed / 12;
-show_debug_message(string(targetX) + ", " + string(targetY));
+
+leaveTime = 20;
+hopTime = 3;
+
+hopLength = 15;
+hopSpeed = 5;
 </string>
           </argument>
         </arguments>
@@ -87,6 +93,40 @@ if (!leaving) {
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Hop
+
+if (!entering &amp;&amp; !leaving) {
+
+    hopping = true;
+    var dir = irandom(360);
+
+    targetX = x + lengthdir_x(hopLength, dir);
+    targetY = x + lengthdir_y(hopLength, dir);
+        
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -128,10 +168,10 @@ if (entering) {
     phy_speed_y = 0;
     
     //When to hop
-    alarm[0] = irandom(3) * room_speed;
+    alarm[0] = irandom(hopTime) * room_speed;
     
     //When to leave
-    alarm[1] = irandom(20) * room_speed;
+    alarm[1] = irandom(leaveTime) * room_speed;
     sprite_index = sprBird;
     image_speed = 0;
   }
@@ -178,6 +218,98 @@ if (leaving) {
     instance_destroy();
   }
 
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///If too close to dog or sheep, fly away
+
+if (!entering &amp;&amp; !leaving) {
+  var dog = instance_find(objDog, 0);
+  var dogDist = scrEucDist(self.id, objDog);
+  
+  
+  var closestSheep = noone;
+  var closestDist = 99999999999;
+  
+  with (objSheep) {
+    var sheepDist = scrEucDist(self.id, other.id);
+    if (sheepDist &lt; closestDist) {
+      closestSheep = self.id;
+      closestDist = sheepDist;
+    }
+  }
+  
+  if (dogDist &lt; 45 || sheepDist &lt; 20) {
+    alarm[1] = 1;
+  }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Hop
+if (hopping) {
+
+
+  show_debug_message("Hopping to " + string(targetX) + ", " + string(targetY));
+  image_index = 1;
+
+  dX = targetX - phy_position_x;
+  dY = targetY - phy_position_y;
+  
+  
+  var desiredVec = scrNormalizeVector(dX, dY);
+  steeringX = (desiredVec[0] * hopSpeed) - phy_speed_x;
+  steeringY = (desiredVec[1] * hopSpeed) - phy_speed_y;
+  phy_speed_x = phy_speed_x + steeringX;
+  phy_speed_x = min(abs(phy_speed_x), hopSpeed) * sign(phy_speed_x);
+  phy_speed_y = phy_speed_y + steeringY;
+  phy_speed_y = min(abs(phy_speed_y), hopSpeed) * sign(phy_speed_y);
+
+  if (point_distance(phy_position_x, phy_position_y, targetX, targetY) &lt; (hopSpeed)) {
+    hopping = false;
+    
+    phy_speed_x = 0;
+    phy_speed_y = 0;
+    
+    image_index = 0;
+  }
+  //When to hop next
+  alarm[0] = floor(random(hopTime) * room_speed) + 1;
 }
 </string>
           </argument>

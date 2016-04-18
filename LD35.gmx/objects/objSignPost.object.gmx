@@ -60,9 +60,10 @@ if (newPicture != currentPicture) {
   instance_create(x,y, objLoosePage);
 }
 
+/*
 if(keyboard_check_pressed(ord('P'))) {
   instance_create(x,y, objLoosePage);
-}
+}*/
 </string>
           </argument>
         </arguments>

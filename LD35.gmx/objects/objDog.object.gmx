@@ -521,7 +521,7 @@ if (canBark) {
   canBark = false;
   
   
-  barkV.image_angle = point_direction(0, 0, phy_speed_x, phy_speed_y) + 180;
+  barkV.image_angle = currentDir + 180;//point_direction(0, 0, phy_speed_x, phy_speed_y);
   var barkSound = choose(sndBark, sndBark2, sndBark3);
   audio_play_sound(barkSound, 100, false);  
 }
