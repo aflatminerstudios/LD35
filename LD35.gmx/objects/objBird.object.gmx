@@ -26,15 +26,62 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize variables
-image_speed = 0.5;
+image_speed = 0.05;
 entering = true;
 leaving = false;
 
 targetX = irandom(room_width - 100) + 50;
-targetY = irandom(room_width - 200) + 70;
+targetY = irandom(room_width - 250) + 70;
 
-flySpeed = room_speed / 6;
+flySpeed = room_speed / 12;
+show_debug_message(string(targetX) + ", " + string(targetY));
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Start flying away
 
+if (!leaving) {
+  leaving = true;
+  var r = irandom(4);
+  
+  switch (r) {
+    case 0:
+      targetX = irandom(room_width);
+      targetY = -25;
+      break;
+    case 1:
+      targetX = room_width + 25;
+      targetY = irandom(room_height);
+      break;
+    case 2:
+      targetX = irandom(room_width);
+      targetY = room_height + 25;
+      break;
+    case 3:
+      targetX = -25
+      targetY = irandom(room_height);
+      break;
+  }
+}
 </string>
           </argument>
         </arguments>
@@ -59,18 +106,78 @@ flySpeed = room_speed / 6;
             <kind>1</kind>
             <string>///Land
 if (entering) {
-  move_towards_point(targetX, targetY, flySpeed);
+   
+  dX = targetX - phy_position_x;
+  dY = targetY - phy_position_y;
   
-  if (x == targetX &amp;&amp; y == targetY) {
-    landing = false;
+  
+  var desiredVec = scrNormalizeVector(dX, dY);
+  steeringX = (desiredVec[0] * flySpeed) - phy_speed_x;
+  steeringY = (desiredVec[1] * flySpeed) - phy_speed_y;
+  phy_speed_x = phy_speed_x + steeringX;
+  phy_speed_x = min(abs(phy_speed_x), flySpeed) * sign(phy_speed_x);
+  phy_speed_y = phy_speed_y + steeringY;
+  phy_speed_y = min(abs(phy_speed_y), flySpeed) * sign(phy_speed_y);
+  
+  //show_debug_message(point_distance(phy_position_x, phy_position_y, targetX, targetY));
+  //show_debug_message(string(phy_speed_x) + ", " + string(phy_speed_y));
+  if (point_distance(phy_position_x, phy_position_y, targetX, targetY) &lt; (flySpeed)) {
+    entering = false;
+    
+    phy_speed_x = 0;
+    phy_speed_y = 0;
     
     //When to hop
     alarm[0] = irandom(3) * room_speed;
     
     //When to leave
     alarm[1] = irandom(20) * room_speed;
+    sprite_index = sprBird;
+    image_speed = 0;
   }
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Fly away
+if (leaving) {
+   
+  dX = targetX - phy_position_x;
+  dY = targetY - phy_position_y;
   
+  
+  var desiredVec = scrNormalizeVector(dX, dY);
+  steeringX = (desiredVec[0] * flySpeed) - phy_speed_x;
+  steeringY = (desiredVec[1] * flySpeed) - phy_speed_y;
+  phy_speed_x = phy_speed_x + steeringX;
+  phy_speed_x = min(abs(phy_speed_x), flySpeed) * sign(phy_speed_x);
+  phy_speed_y = phy_speed_y + steeringY;
+  phy_speed_y = min(abs(phy_speed_y), flySpeed) * sign(phy_speed_y);
+  
+  //show_debug_message(point_distance(phy_position_x, phy_position_y, targetX, targetY));
+  //show_debug_message(string(phy_speed_x) + ", " + string(phy_speed_y));
+  if (point_distance(phy_position_x, phy_position_y, targetX, targetY) &lt; (flySpeed)) {
+    instance_destroy();
+  }
+
 }
 </string>
           </argument>
@@ -78,7 +185,7 @@ if (entering) {
       </action>
     </event>
   </events>
-  <PhysicsObject>0</PhysicsObject>
+  <PhysicsObject>-1</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>
   <PhysicsObjectDensity>0.5</PhysicsObjectDensity>
@@ -89,5 +196,8 @@ if (entering) {
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints/>
+  <PhysicsShapePoints>
+    <point>6,5</point>
+    <point>6,6</point>
+  </PhysicsShapePoints>
 </object>

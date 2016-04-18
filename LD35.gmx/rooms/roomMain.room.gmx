@@ -58,6 +58,7 @@
     <instance objName="objFarmer" x="32" y="96" name="inst_5376511C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFenceForeground" x="400" y="300" name="inst_D29B03E5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSignPost" x="240" y="524" name="inst_1C545C4A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBirdSpawner" x="772" y="15" name="inst_AF760BA7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>-1</PhysicsWorld>
