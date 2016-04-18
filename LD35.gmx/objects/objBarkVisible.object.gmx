@@ -93,16 +93,16 @@ if (parent != noone) {
       addY = 5;
     break;
     case 1:
-      addX = 17;
+      addX = 22;
       addY = -14;
     break;
     case 2:
       addX = 0;
-      addY = -17;
+      addY = -22;
     break;
     case 3:
-      addX = -10;
-      addY = -10;
+      addX = -15;
+      addY = 14;
     break;
     case 4:
       addX = -20;
@@ -114,11 +114,11 @@ if (parent != noone) {
     break
     case 6:
       addX = 0;
-      addY = 17;
+      addY = 22;
     break;
     case 7:
-      addX = 15;
-      addY = 14;
+      addX = -15;
+      addY = -14;
     break;
   }
   image_angle = parent.currentDir + 180;
