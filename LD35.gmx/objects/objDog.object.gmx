@@ -267,7 +267,7 @@ if (newy &lt; 22 ) {
           <argument>
             <kind>1</kind>
             <string>///Sprint handler
-if (!sprinting &amp;&amp; currentSprint &lt; maxSprint) {
+/*if (!sprinting &amp;&amp; currentSprint &lt; maxSprint) {
   currentSprint++;
 } else if (sprinting) {
   if (currentSprint &gt; 0 &amp;&amp; keyboard_check(vk_control)) {
@@ -281,7 +281,7 @@ if (!sprinting &amp;&amp; currentSprint &lt; maxSprint) {
     sprinting = true;
     moveSpeed *= 2;
   }
-}
+}*/
 </string>
           </argument>
         </arguments>
