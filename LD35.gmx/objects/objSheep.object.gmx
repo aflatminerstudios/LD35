@@ -840,8 +840,8 @@ if (scared) {
     var barkD = scrEucDist(self.id, bark);//point_distance(x, x, dog.x, dog.x);
     
     var desiredVec = scrNormalizeVector(dX, dY);
-    barkSteeringX = (desiredVec[0] * maxSpeed * 1.4) - phy_speed_x;
-    barkSteeringY = (desiredVec[1] * maxSpeed * 1.4) - phy_speed_y;  
+    barkSteeringX = (desiredVec[0] * maxSpeed * 1.6) - phy_speed_x;
+    barkSteeringY = (desiredVec[1] * maxSpeed * 1.6) - phy_speed_y;  
   } else {
     barkSteeringX = 0;
     barkSteeringY = 0;
