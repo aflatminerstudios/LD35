@@ -11,6 +11,7 @@
     <sound>sound\sndLogoTheme</sound>
     <sound>sound\sndTitleScreen</sound>
     <sound>sound\sndMainTheme</sound>
+    <sound>sound\sndCountdown</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sprDog</sprite>
@@ -21,7 +22,6 @@
       <sprite>sprites\sprNazcaDonut</sprite>
       <sprite>sprites\sprNazcaA</sprite>
       <sprite>sprites\sprCircle</sprite>
-      <sprite>sprites\sprC</sprite>
       <sprite>sprites\sprCorners</sprite>
       <sprite>sprites\sprH</sprite>
       <sprite>sprites\sprDoomSpiral</sprite>
@@ -51,6 +51,7 @@
     <sprite>sprites\sprSheepPlaceholder</sprite>
     <sprite>sprites\sprScared</sprite>
     <sprite>sprites\sprBarkPlaceholder</sprite>
+    <sprite>sprites\sprC</sprite>
     <sprites name="Dog">
       <sprite>sprites\sprDogS</sprite>
       <sprite>sprites\sprDogSW</sprite>
@@ -60,6 +61,18 @@
       <sprite>sprites\sprDogSE</sprite>
       <sprite>sprites\sprDogE</sprite>
       <sprite>sprites\sprDogNE</sprite>
+      <sprite>sprites\sprDogIdleN</sprite>
+      <sprite>sprites\sprDogIdleNW</sprite>
+      <sprite>sprites\sprDogIdleS</sprite>
+      <sprite>sprites\sprDogIdleW</sprite>
+      <sprite>sprites\sprDogIdleNE</sprite>
+      <sprite>sprites\sprDogIdleSE</sprite>
+      <sprite>sprites\sprDogIdleE</sprite>
+      <sprite>sprites\sprDogIdleSW</sprite>
+      <sprite>sprites\sprDogSneakSW</sprite>
+      <sprite>sprites\sprDogSneakW</sprite>
+      <sprite>sprites\sprDogSneakSE</sprite>
+      <sprite>sprites\sprDogSneakE</sprite>
     </sprites>
     <sprite>sprites\sprBarkLines</sprite>
     <sprite>sprites\sprCredits</sprite>

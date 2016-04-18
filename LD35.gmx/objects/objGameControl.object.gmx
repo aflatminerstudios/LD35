@@ -200,6 +200,8 @@ music = sndMainTheme;
 minPct = 90;
 
 ready = false;
+
+timerOn = 4;
 </string>
           </argument>
         </arguments>
@@ -495,7 +497,12 @@ draw_text_color(500, 20, string(floor(timer / room_speed)), c_red, c_red, c_red,
 var go = instance_find(objGameOver, 0);
 
 if (ending &amp;&amp; go == noone) {
-  draw_text_transformed_colour(400, 300, string((floor(alarm[2] / room_speed)) + 1), 10, 10, 0, c_red, c_red, c_red, c_red, 100);
+  var cntTimer = (floor(alarm[2] / room_speed)) + 1;
+  if (timerOn != cntTimer) {
+    audio_play_sound(sndCountdown, 100, false);
+    timerOn = cntTimer;
+  }
+  draw_text_transformed_colour(400, 300, string(cntTimer), 10, 10, 0, c_red, c_red, c_red, c_red, 100);
 }
 </string>
           </argument>

@@ -36,6 +36,7 @@ draw_set_valign(fa_middle);
 var seconds = objGameControl.timer/room_speed;
 var minutes = floor(seconds / 60)
 seconds = seconds - minutes*60;
+milliseconds = ((seconds * 100) % 100)
 
 if(minutes &lt; 10)
   minutesString = "0" + string_format(minutes, 1, 0);
@@ -43,11 +44,16 @@ else
   minutesString = string_format(minutes, 2, 0);
 
 if(seconds &lt; 10)
-  secondsString = "0" + string_format(seconds, 1, 2);
+  secondsString = "0" + string_format(seconds, 1, 0);
 else
-  secondsString = string_format(seconds, 2, 2);
+  secondsString = string_format(seconds, 2, 0);
 
-var timeString = minutesString + ":" + secondsString;
+if(milliseconds &lt; 10)
+  millisecondsString = "0" + string_format(milliseconds, 1, 0);
+else
+  millisecondsString = string_format(milliseconds, 2, 0);  
+  
+var timeString = minutesString + ":" + secondsString + "." + millisecondsString;
 draw_text(x, y+43, timeString);
 </string>
           </argument>

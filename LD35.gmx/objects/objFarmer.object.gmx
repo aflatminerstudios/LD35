@@ -29,6 +29,8 @@
 
 barkDist = 60;
 dogDist = 80;
+
+image_speed = 0.5;
 </string>
           </argument>
         </arguments>
