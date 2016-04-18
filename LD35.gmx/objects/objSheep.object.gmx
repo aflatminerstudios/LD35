@@ -39,7 +39,7 @@ maxAvoid = room_speed / 40;
 distMult = 1.5;
 
 //Radius around sheep at which they are scared of dog
-dogMult = 3;
+dogMult = 2;
 scareDist = sprite_width * dogMult;
 
 //Sets initial direction
@@ -85,7 +85,7 @@ closeDist = 50;
 
 //For whether scared of a bark
 barkScared = false;
-barkDist = scareDist * 1.8;
+barkDist = scareDist * 2.2;
 nearBark = false;
 
 
