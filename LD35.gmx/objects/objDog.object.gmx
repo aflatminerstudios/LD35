@@ -477,7 +477,7 @@ changedSpriteDir++;
 if (canBark) {
 
   var bark = instance_create(phy_position_x + moveVec[0] * 20, phy_position_y + moveVec[1] * 20, objBark);
-  var barkV = instance_create(x, y, objBarkVisible);
+  var barkV = instance_create(phy_position_x + 20, phy_position_y + 10, objBarkVisible);
   bark.parent = self.id;
   barkV.parent = self.id;
 

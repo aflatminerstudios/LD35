@@ -4,9 +4,9 @@
 for (var i = 0; i < global.numComplete; ++i) {
   var temp = global.pcts[i] * 1000;
   if (i != 0) {
-    temp /= sqrt((global.times[i] - global.times[i-1]));    
+    temp /= power((global.times[i] - global.times[i-1]), 0.1) * 2;    
   } else {
-    temp /= sqrt(global.times[i]);
+    temp /= power(global.times[i], 0.1) * 2;
   }
   global.scores[i] = floor(temp);
   score += floor(temp);

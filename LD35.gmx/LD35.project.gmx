@@ -51,6 +51,11 @@
       <sprite>sprites\sprHeart</sprite>
       <sprite>sprites\sprThinRect</sprite>
       <sprite>sprites\sprTriangle</sprite>
+      <sprite>sprites\sprDonut</sprite>
+      <sprite>sprites\sprHoley2</sprite>
+      <sprite>sprites\sprHoley3</sprite>
+      <sprite>sprites\sprTrafficLight</sprite>
+      <sprite>sprites\sprSmiley</sprite>
     </sprites>
     <sprite>sprites\sprSheepPlaceholder</sprite>
     <sprite>sprites\sprScared</sprite>

@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///Contains info about courses
-numCourses = 1;
+numCourses = 2;
 
 C1[0] = sprCircle;
 C1[1] = sprThinRect;
@@ -34,9 +34,17 @@ C1[2] = sprCorners;
 C1[3] = sprHeart;
 C1[4] = sprTriangle;
 
+C2[0] = sprDonut;
+C2[1] = sprHoley2;
+C2[2] = sprHoley3;
+C2[3] = sprTrafficLight;
+C2[4] = sprSmiley;
 
 courseVars[0] = C1;
 numLevels[0] = 5;
+
+courseVars[1] = C2;
+numLevels[1] = 5;
 </string>
           </argument>
         </arguments>

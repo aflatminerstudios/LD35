@@ -63,7 +63,7 @@ if (!audio_is_playing(sndTitleScreen)) {
 var ci = instance_find(objCourseInfo, 0);
 
 
-numCourses = ci.numCourses + 1;
+numCourses = ci.numCourses;
 selectedCourse = 0;
 
 

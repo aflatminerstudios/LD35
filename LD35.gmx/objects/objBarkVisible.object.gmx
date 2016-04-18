@@ -83,8 +83,47 @@ instance_destroy();
             <string>///Follow parent
 
 if (parent != noone) {
-  x = parent.phy_position_x;
-  y = parent.phy_position_y;
+
+  var index = parent.arrayIndex;
+  var addX = 0;
+  var addY = 0;  
+  switch (index) {
+    case 0:
+      addX = 20;
+      addY = 5;
+    break;
+    case 1:
+      addX = 14;
+      addY = -14;
+    break;
+    case 2:
+      addX = 0;
+      addY = -17;
+    break;
+    case 3:
+      addX = -14;
+      addY = -14;
+    break;
+    case 4:
+      addX = -20;
+      addY = 5;
+    break;
+    case 5:
+      addX = -15;
+      addY = 14;
+    break
+    case 6:
+      addX = 0;
+      addY = -17;
+    break;
+    case 7:
+      addX = 15;
+      addY = 14;
+    break;
+  }
+  image_angle = parent.currentDir + 180;
+  x = parent.phy_position_x;// + (30 * sign(((image_angle + 90) % 360) - 180));
+  y = parent.phy_position_y;// + (30 * sign(181 - image_angle));
 }
 
 </string>
