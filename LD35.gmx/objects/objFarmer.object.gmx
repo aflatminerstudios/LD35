@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Setup variables
 
-barkDist = 40;
+barkDist = 60;
 dogDist = 80;
 </string>
           </argument>
