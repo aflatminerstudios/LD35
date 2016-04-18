@@ -53,6 +53,7 @@ dogDist = 80;
             <kind>1</kind>
             <string>///Look for dog near
 
+/*
 var dog = instance_find(objDog, 0);
 var gc = instance_find(objGameControl, 0);
 
@@ -63,6 +64,8 @@ if (point_distance(x, y, dog.phy_position_x, dog.phy_position_y) &lt; dogDist) {
     gc.pic.visible = false;
   }
 }
+
+*/
 </string>
           </argument>
         </arguments>

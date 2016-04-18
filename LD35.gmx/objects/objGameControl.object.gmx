@@ -333,7 +333,7 @@ if (timer == 0) {
           <argument>
             <kind>1</kind>
             <string>///Make picture invisible and move down
-pic.visible = false;
+//pic.visible = false;
 
 /*
 var temp = instance_create(96 + 96 * howManyPics, 542, objMiniPicture);
