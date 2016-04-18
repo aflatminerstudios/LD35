@@ -378,7 +378,7 @@ if (phy_speed_x != 0 || phy_speed_y != 0) {
   } else {
     theSprite = spriteArray[index];
   }
-  if (changedSpriteDir &gt; (room_speed / 10) &amp;&amp; sprite_index != theSprite) {
+  if (changedSpriteDir &gt; (room_speed / 20) &amp;&amp; sprite_index != theSprite) {
     image_speed = 0.5;
 
     

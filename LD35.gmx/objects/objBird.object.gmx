@@ -243,8 +243,14 @@ if (leaving) {
 
 if (!entering &amp;&amp; !leaving) {
   var dog = instance_find(objDog, 0);
-  var dogDist = scrEucDist(self.id, objDog);
+  var dogDist = scrEucDist(self.id, dog);
   
+  var bark = instance_find(objBark, 0);
+  if (bark != noone) {
+    var barkDist = scrEucDist(self.id, bark);
+  } else {
+    var barkDist = 9999;
+  }
   
   var closestSheep = noone;
   var closestDist = 99999999999;
@@ -257,7 +263,7 @@ if (!entering &amp;&amp; !leaving) {
     }
   }
   
-  if (dogDist &lt; 35 || sheepDist &lt; 20) {
+  if (dogDist &lt; 35 || sheepDist &lt; 20 || barkDist &lt; 75) {
     alarm[1] = 1;
   }
 }
@@ -309,6 +315,31 @@ if (hopping) {
   //When to hop next
   alarm[0] = floor(random(hopTime) * room_speed) + 1;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Bird facing
+
+var dir = point_direction(0, 0, phy_speed_x, phy_speed_y);
+
+image_angle = (dir + 180) % 360;
 </string>
           </argument>
         </arguments>
