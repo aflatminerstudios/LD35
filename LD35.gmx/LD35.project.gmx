@@ -61,6 +61,11 @@
       <sprite>sprites\sprFish</sprite>
       <sprite>sprites\sprDolphin</sprite>
       <sprite>sprites\sprOctopus</sprite>
+      <sprite>sprites\sprSwirl</sprite>
+      <sprite>sprites\sprLeftSemi</sprite>
+      <sprite>sprites\sprRightSemi</sprite>
+      <sprite>sprites\sprPenis</sprite>
+      <sprite>sprites\sprQuestion</sprite>
     </sprites>
     <sprite>sprites\sprSheepPlaceholder</sprite>
     <sprite>sprites\sprScared</sprite>
