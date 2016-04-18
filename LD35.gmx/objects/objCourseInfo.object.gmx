@@ -26,25 +26,34 @@
           <argument>
             <kind>1</kind>
             <string>///Contains info about courses
-numCourses = 2;
+numCourses = 3;
 
-C1[0] = sprCircle;
-C1[1] = sprThinRect;
-C1[2] = sprCorners;
-C1[3] = sprHeart;
-C1[4] = sprTriangle;
+C0[0] = sprCircle;
+C0[1] = sprThinRect;
+C0[2] = sprCorners;
+C0[3] = sprHeart;
+C0[4] = sprTriangle;
 
-C2[0] = sprDonut;
-C2[1] = sprHoley2;
-C2[2] = sprHoley3;
-C2[3] = sprTrafficLight;
-C2[4] = sprSmiley;
+C1[0] = sprDonut;
+C1[1] = sprHoley2;
+C1[2] = sprHoley3;
+C1[3] = sprTrafficLight;
+C1[4] = sprSmiley;
 
-courseVars[0] = C1;
+C2[0] = sprDrop;
+C2[1] = sprWhale;
+C2[2] = sprFish;
+C2[3] = sprDolphin;
+C2[4] = sprOctopus;
+
+courseVars[0] = C0;
 numLevels[0] = 5;
 
-courseVars[1] = C2;
+courseVars[1] = C1;
 numLevels[1] = 5;
+
+courseVars[2] = C2;
+numLevels[2] = 5;
 </string>
           </argument>
         </arguments>

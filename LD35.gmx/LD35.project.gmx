@@ -56,6 +56,11 @@
       <sprite>sprites\sprHoley3</sprite>
       <sprite>sprites\sprTrafficLight</sprite>
       <sprite>sprites\sprSmiley</sprite>
+      <sprite>sprites\sprDrop</sprite>
+      <sprite>sprites\sprWhale</sprite>
+      <sprite>sprites\sprFish</sprite>
+      <sprite>sprites\sprDolphin</sprite>
+      <sprite>sprites\sprOctopus</sprite>
     </sprites>
     <sprite>sprites\sprSheepPlaceholder</sprite>
     <sprite>sprites\sprScared</sprite>

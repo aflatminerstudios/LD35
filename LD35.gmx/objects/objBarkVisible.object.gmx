@@ -93,7 +93,7 @@ if (parent != noone) {
       addY = 5;
     break;
     case 1:
-      addX = 14;
+      addX = 17;
       addY = -14;
     break;
     case 2:
@@ -101,8 +101,8 @@ if (parent != noone) {
       addY = -17;
     break;
     case 3:
-      addX = -14;
-      addY = -14;
+      addX = -10;
+      addY = -10;
     break;
     case 4:
       addX = -20;
@@ -114,7 +114,7 @@ if (parent != noone) {
     break
     case 6:
       addX = 0;
-      addY = -17;
+      addY = 17;
     break;
     case 7:
       addX = 15;
@@ -122,8 +122,8 @@ if (parent != noone) {
     break;
   }
   image_angle = parent.currentDir + 180;
-  x = parent.phy_position_x;// + (30 * sign(((image_angle + 90) % 360) - 180));
-  y = parent.phy_position_y;// + (30 * sign(181 - image_angle));
+  x = parent.phy_position_x + addX;// + (30 * sign(((image_angle + 90) % 360) - 180));
+  y = parent.phy_position_y + addY;// + (30 * sign(181 - image_angle));
 }
 
 </string>

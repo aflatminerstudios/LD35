@@ -29,7 +29,7 @@
 
 image_speed = 0;
 
-courseNum = 0;
+courseNum = -1;
 
 currentlySelected = false;
 
