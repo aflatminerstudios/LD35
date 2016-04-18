@@ -59,7 +59,7 @@ var gc = instance_find(objGameControl, 0);
 if (point_distance(x, y, dog.phy_position_x, dog.phy_position_y) &lt; dogDist) {  
   gc.pic.visible = true;
 } else {
-  if (!gc.ending) {
+  if (!gc.ending &amp;&amp; gc.ready) {
     gc.pic.visible = false;
   }
 }

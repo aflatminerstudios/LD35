@@ -5,6 +5,7 @@ var gameCtrl = argument0;
 var whichSprite = choose(sprNazcaOval, sprNazcaDonut, sprNazcaA, sprHeart, sprC, sprCircle, sprCorners, sprDoomSpiral, sprH);
 
 gameCtrl.pic = instance_create(400,300,objNazcaPicture);
+gameCtrl.ready = false;
 
 /*
 var matchFound = true;
