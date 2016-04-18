@@ -69,6 +69,8 @@
     <sprite>sprites\sprFarmer</sprite>
     <sprite>sprites\sprGameOver</sprite>
     <sprite>sprites\sprFenceForeground</sprite>
+    <sprite>sprites\sprSignPost</sprite>
+    <sprite>sprites\sprLoosePage</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
@@ -112,6 +114,8 @@
     <object>objects\objFenceForeground</object>
     <object>objects\objBird</object>
     <object>objects\objBirdSpawner</object>
+    <object>objects\objSignPost</object>
+    <object>objects\objLoosePage</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomLogo</room>
