@@ -84,7 +84,7 @@ ending = false;
             <kind>1</kind>
             <string>///Timer info
 
-timer = 30;
+timer = 0;
 
 alarm[1] = room_speed;
 </string>
@@ -194,6 +194,34 @@ music = sndMainTheme;
 
 minPct = 90;
 
+ready = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Reset score variables
+
+global.pcts[0] = 0;
+global.times[0] = 0;
+score = 0;
+global.numComplete = 0;
+
 </string>
           </argument>
         </arguments>
@@ -274,7 +302,7 @@ ending = false;
             <kind>1</kind>
             <string>///Adjust timer
 
-timer++;
+//timer++;
 /*
 if (timer == 0) {
   scrEndPicture(pic, self.id);
@@ -316,6 +344,8 @@ temp.image_yscale = 0.1;
 
 miniPics[howManyPics++] = temp;
 
+ready = true;
+
 </string>
           </argument>
         </arguments>
@@ -350,6 +380,33 @@ if (pct &gt; minPct) {
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Increment timer
+
+var go = instance_find(objGameOver, 0);
+
+if (go == noone) {
+  timer++;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -368,7 +425,9 @@ if (pct &gt; minPct) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text_color(500, 20, string(timer), c_red, c_red, c_red, c_red, 100);
+            <string>///Timer
+
+draw_text_color(500, 20, string(floor(timer / room_speed)), c_red, c_red, c_red, c_red, 100);
 </string>
           </argument>
         </arguments>

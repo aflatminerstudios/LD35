@@ -33,6 +33,10 @@ global.maxDist = 100;
 // Each course is called a test, with levels inside (1-1, 1-2, 1-3, 2-1, 2-2, etc.)
 global.currentCourse = 1;
 global.currentLevel = 1;
+
+global.pcts[0] = 0;
+global.numComplete = 0;
+global.times[0] = 0;
 </string>
           </argument>
         </arguments>

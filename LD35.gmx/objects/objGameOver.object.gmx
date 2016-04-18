@@ -103,8 +103,13 @@ ready = true;
             <string>///Draw and add text
 
 draw_self();
+if (ready) {
+  draw_text(300, 410, "Press any key to continue.");
+}
 
-draw_text(500, 450, "Press any key to continue.");
+draw_text(454, 258, string(score));
+
+draw_text(465, 340, string(floor(global.times[global.numComplete - 1] / room_speed)) + " s");
 </string>
           </argument>
         </arguments>
