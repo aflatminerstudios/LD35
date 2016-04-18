@@ -29,7 +29,10 @@
 
 global.maxDist = 100;
 
-
+// Information passing between roomLevelSelect and roomMain
+// Each course is called a test, with levels inside (1-1, 1-2, 1-3, 2-1, 2-2, etc.)
+global.currentCourse = 1;
+global.currentLevel = 1;
 </string>
           </argument>
         </arguments>

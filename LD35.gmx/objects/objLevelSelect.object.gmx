@@ -76,6 +76,9 @@ if(!audio_is_playing(music))
             <kind>1</kind>
             <string>/// Stop music and move to next room
 audio_stop_sound(music);
+
+global.currentCourse = 1;
+global.currentLevel = 1;
 room_goto(roomMain);
 </string>
           </argument>
