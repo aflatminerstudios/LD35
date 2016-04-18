@@ -202,6 +202,8 @@ if (phy_speed_x != 0 || phy_speed_y != 0) {
   var normed = scrNormalizeVector(phy_speed_x, phy_speed_y);
   moveDir = point_direction(0, 0, phy_speed_x, phy_speed_y);
   moveVec = normed;
+  phy_speed_x = normed[0] * moveSpeed;
+  phy_speed_y = normed[1] * moveSpeed;
 }
 </string>
           </argument>
