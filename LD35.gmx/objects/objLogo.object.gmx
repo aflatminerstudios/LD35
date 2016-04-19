@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>/// Start jingle and set timer based on jingle length
 audio_play_sound(sndLogoTheme, 0, 0);
-alarm[0] = audio_sound_length(sndLogoTheme)*room_speed + room_speed;
+alarm[0] = audio_sound_length(sndLogoTheme)*room_speed + room_speed*0.50;
 
 steps = 0;
 </string>

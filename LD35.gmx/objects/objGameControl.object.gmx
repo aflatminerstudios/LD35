@@ -667,7 +667,7 @@ if (ending &amp;&amp; go == noone) {
             <kind>1</kind>
             <string>///End current picture
 
-scrEndPicture(pic, self.id);
+//scrEndPicture(pic, self.id);
 </string>
           </argument>
         </arguments>
