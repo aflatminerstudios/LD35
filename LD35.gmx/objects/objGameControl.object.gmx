@@ -357,17 +357,17 @@ if (room != roomTest) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Make bah sounds
+            <string>///Make sheep sounds
 
 var r = random(1);
 
 if (r &lt; 0.02) {
-  var sound = choose(sndSheep_Bleat3, sndSheep_Bleat4, sndSheep_Bleat5, sndSheep_Bleat6, sndSheep_Bleat7, sndSheep_Bleat8);
-} else {
   var sound = choose(sndSheep_Bleat_Rare1, sndSheep_Bleat_Rare2, sndSheep_Bleat_Rare3, sndSheep_Bleat_Rare5);
+} else {
+  var sound = choose(sndSheep_Bleat3, sndSheep_Bleat4, sndSheep_Bleat5, sndSheep_Bleat6, sndSheep_Bleat7, sndSheep_Bleat8);
 }
 
-//audio_play_sound(sound, 0, false);
+audio_play_sound(sound, 0, false);
 
 alarm[4] = floor((random(6) + 6) * room_speed);
 </string>

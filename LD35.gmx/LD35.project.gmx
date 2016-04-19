@@ -163,6 +163,8 @@
     <sprite>sprites\sprInstructions</sprite>
     <sprite>sprites\sprCountdown</sprite>
     <sprite>sprites\sprLSInstructions</sprite>
+    <sprite>sprites\sprTitle</sprite>
+    <sprite>sprites\sprBuckyPant</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
@@ -224,6 +226,8 @@
     <object>objects\objInstructions</object>
     <object>objects\objCountdown</object>
     <object>objects\objLSInstructions</object>
+    <object>objects\objTitleScreen</object>
+    <object>objects\objBuckyPant</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomLogo</room>
