@@ -40,15 +40,15 @@ C1[2] = sprHoley3;
 C1[3] = sprTrafficLight;
 C1[4] = sprSmiley;
 
-C2[0] = sprDrop;
-C2[1] = sprWhale;
-C2[2] = sprFish;
-C2[3] = sprDolphin;
+C2[0] = sprWhale;
+C2[1] = sprDrop;
+C2[2] = sprDolphin;
+C2[3] = sprFish;
 C2[4] = sprOctopus;
 
 C3[0] = sprSwirl;
-C3[1] = sprLeftSemi;
-C3[2] = sprRightSemi;
+C3[1] = sprRightSemi;
+C3[2] = sprLeftSemi;
 C3[3] = sprPenis;
 C3[4] = sprQuestion;
 

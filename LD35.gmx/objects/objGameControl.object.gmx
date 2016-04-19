@@ -427,19 +427,19 @@ var p = global.pcts[global.numComplete];
 
 global.numComplete++;
 
-if (p &gt;= 90) {
-  audio_play_sound(sndFarmer_Next_Pic_Amazing, 0, false);
-} else if (p &gt;= 80) {
+if (p &gt;= 100) {
   audio_play_sound(sndFarmer_Next_Pic_Perfect, 0, false);
-} else if (p &gt;= 70) {
+} else if (p &gt;= 95) {
+  audio_play_sound(sndFarmer_Next_Pic_Amazing, 0, false);
+} else if (p &gt;= 92) {
   audio_play_sound(sndFarmer_Next_Pic_Great, 0, false);
-} else if (p &gt;= 60) {
+} else if (p &gt;= 85) {
   audio_play_sound(sndFarmer_Next_Pic_Good, 0, false);
-} else if (p &gt;= 50) {
+} else if (p &gt;= 75) {
   audio_play_sound(sndFarmer_Next_Pic_Fair, 0, false);
-} else if (p &gt;= 40) {
+} else if (p &gt;= 60) {
   audio_play_sound(sndFarmer_Next_Pic_Kinda_Bad, 0, false);
-} else if (p &gt;= 30) {
+} else {
   audio_play_sound(sndFarmer_Next_Pic_Bad, 0, false);
 }
 
