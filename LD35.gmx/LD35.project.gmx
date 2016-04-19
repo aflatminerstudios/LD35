@@ -11,6 +11,30 @@
     <sound>sound\sndLogoTheme</sound>
     <sound>sound\sndTitleScreen</sound>
     <sound>sound\sndMainTheme</sound>
+    <sounds name="Sheep">
+      <sound>sound\sndSheep_Bleat3</sound>
+      <sound>sound\sndSheep_Bleat4</sound>
+      <sound>sound\sndSheep_Bleat5</sound>
+      <sound>sound\sndSheep_Bleat6</sound>
+      <sound>sound\sndSheep_Bleat7</sound>
+      <sound>sound\sndSheep_Bleat8</sound>
+      <sound>sound\sndSheep_Bleat_Rare1</sound>
+      <sound>sound\sndSheep_Bleat_Rare2</sound>
+      <sound>sound\sndSheep_Bleat_Rare3</sound>
+      <sound>sound\sndSheep_Bleat_Rare4</sound>
+      <sound>sound\sndSheep_Bleat_Rare5</sound>
+      <sound>sound\sndSheep_Bleat1</sound>
+      <sound>sound\sndSheep_Bleat2</sound>
+    </sounds>
+    <sounds name="Farmer">
+      <sound>sound\sndFarmer_Next_Pic_Amazing</sound>
+      <sound>sound\sndFarmer_Next_Pic_Bad</sound>
+      <sound>sound\sndFarmer_Next_Pic_Fair</sound>
+      <sound>sound\sndFarmer_Next_Pic_Good</sound>
+      <sound>sound\sndFarmer_Next_Pic_Great</sound>
+      <sound>sound\sndFarmer_Next_Pic_Kinda_Bad</sound>
+      <sound>sound\sndFarmer_Next_Pic_Perfect</sound>
+    </sounds>
     <sound>sound\sndCountdown</sound>
   </sounds>
   <sprites name="sprites">
@@ -120,12 +144,25 @@
     <sprite>sprites\sprLoosePage</sprite>
     <sprite>sprites\sprStopwatch</sprite>
     <sprite>sprites\sprSprintMeter</sprite>
-    <sprite>sprites\sprLevelSelecter</sprite>
-    <sprite>sprites\sprLevelUnselect</sprite>
+    <sprites name="Level Selectors">
+      <sprite>sprites\sprLevelSelecter</sprite>
+      <sprite>sprites\sprLevelUnselect</sprite>
+      <sprite>sprites\sprC0Select</sprite>
+      <sprite>sprites\sprC1Select</sprite>
+      <sprite>sprites\sprC2Select</sprite>
+      <sprite>sprites\sprC3Select</sprite>
+      <sprite>sprites\sprC4Select</sprite>
+      <sprite>sprites\sprC0Unselect</sprite>
+      <sprite>sprites\sprC1Unselect</sprite>
+      <sprite>sprites\sprC2Unselect</sprite>
+      <sprite>sprites\sprC4Unselect</sprite>
+      <sprite>sprites\sprC3Unselect</sprite>
+    </sprites>
     <sprite>sprites\sprLevelSelectTitle</sprite>
     <sprite>sprites\sprBucky</sprite>
     <sprite>sprites\sprInstructions</sprite>
     <sprite>sprites\sprCountdown</sprite>
+    <sprite>sprites\sprLSInstructions</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\objBaseBackground</background>
@@ -186,6 +223,7 @@
     <object>objects\objGameOver</object>
     <object>objects\objInstructions</object>
     <object>objects\objCountdown</object>
+    <object>objects\objLSInstructions</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomLogo</room>

@@ -60,7 +60,7 @@ var farmer = instance_find(objFarmer, 0);
 var gc = instance_find(objGameControl, 0);
 
 if (farmer != noone &amp;&amp; point_distance(parent.phy_position_x, parent.phy_position_y, farmer.x, farmer.y) &lt; farmer.barkDist) {  
-  if (!gc.ending || gc.alarm[2] &lt; 0) {
+  if (!gc.ending &amp;&amp; gc.alarm[2] &lt; 0) {
     gc.ending = true;
     scrEndPicture(gc.pic, gc);
   } 

@@ -1306,12 +1306,12 @@ if (newx &lt; 0 || newx &gt; room_width) {
 }
 */
 
-if (newy &lt; 52 ) {
+if (newy &lt; 98 ) {
   phy_speed_y = 0;
-  phy_position_y = 52
-} else if (newy &gt; 486) {
+  phy_position_y = 98
+} else if (newy &gt; 445) {
   phy_speed_y = 0;
-  phy_position_y = 486;
+  phy_position_y = 445;
 }
 </string>
           </argument>

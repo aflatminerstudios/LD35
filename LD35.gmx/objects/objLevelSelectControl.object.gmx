@@ -40,6 +40,39 @@ if (!audio_is_playing(sndTitleScreen)) {
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Sprite Arrays
+
+select[0] = sprC0Select;
+select[1] = sprC1Select;
+select[2] = sprC2Select;
+select[3] = sprC3Select;
+select[4] = sprC4Select;
+
+unselect[0] = sprC0Unselect;
+unselect[1] = sprC1Unselect;
+unselect[2] = sprC2Unselect;
+unselect[3] = sprC3Unselect;
+unselect[4] = sprC4Unselect;
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="2" enumb="0">
       <action>
@@ -142,7 +175,7 @@ if (keyboard_check_pressed(vk_right) || keyboard_check_pressed(ord('D'))) {
             <kind>1</kind>
             <string>///Go to selected course
 
-if (keyboard_check(vk_space) || keyboard_check(vk_enter)) {
+if (keyboard_check_pressed(vk_space) || keyboard_check_pressed(vk_enter)) {
   global.whichCourse = selectedCourse;
   
   audio_stop_sound(sndTitleScreen);

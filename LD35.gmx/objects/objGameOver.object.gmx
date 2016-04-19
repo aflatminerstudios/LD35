@@ -37,6 +37,29 @@ image_speed = 0.4;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>room_goto(roomLevelSelect);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
@@ -82,7 +105,7 @@ ready = true;
             <string>///Check for exit
 if (ready &amp;&amp; keyboard_check(vk_anykey)) {
   audio_stop_sound(sndMainTheme);
-  room_goto(roomLevelSelect);
+  alarm[1] = 1;
 }
 </string>
           </argument>
@@ -147,10 +170,10 @@ if (done) {
   
   
   draw_text(340, 115, global.scores[0]);
-  draw_text(340, 186, global.scores[0]);
-  draw_text(340, 257, global.scores[0]);
-  draw_text(340, 328, global.scores[0]);
-  draw_text(340, 406, global.scores[0]);
+  draw_text(340, 186, global.scores[1]);
+  draw_text(340, 257, global.scores[2]);
+  draw_text(340, 328, global.scores[3]);
+  draw_text(340, 406, global.scores[4]);
   
   var times;
   times[0] = global.times[0] / room_speed;

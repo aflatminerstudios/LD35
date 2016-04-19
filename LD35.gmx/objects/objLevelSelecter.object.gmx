@@ -63,12 +63,12 @@ var ctrl = instance_find(objLevelSelectControl, 0);
 if (ctrl != noone) {
   if (!currentlySelected &amp;&amp; ctrl.selectedCourse == courseNum) {
     currentlySelected = true;
-    sprite_index = sprLevelSelecter;
+    sprite_index = ctrl.select[courseNum];
     image_index = 0;
     image_speed = 0.5
   } else if (currentlySelected &amp;&amp; ctrl.selectedCourse != courseNum) {
     currentlySelected = false;
-    sprite_index = sprLevelUnselect;
+    sprite_index = ctrl.unselect[courseNum];
     image_index = 0;
     image_speed = 0.5;
   }
@@ -131,7 +131,7 @@ draw_self();
 
 draw_set_halign(fa_center);
 draw_set_font(fontBasic_medium);
-draw_text(x, y + sprite_height/2, name);
+draw_text(x, y + 45, name);
 
 draw_set_halign(fa_left);
 </string>

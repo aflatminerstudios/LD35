@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Setup variables
 
-barkDist = 60;
+barkDist = 80;
 dogDist = 80;
 
 image_speed = 0.5;
