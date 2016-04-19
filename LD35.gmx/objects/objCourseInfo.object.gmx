@@ -60,18 +60,23 @@ C4[4] = sprAFlat;
 
 courseVars[0] = C0;
 numLevels[0] = 5;
+numSheep[0] = 50;
 
 courseVars[1] = C1;
 numLevels[1] = 5;
+numSheep[1] = 20;
 
 courseVars[2] = C2;
 numLevels[2] = 5;
+numSheep[2] = 30;
 
 courseVars[3] = C3;
 numLevels[3] = 5;
+numSheep[3] = 30;
 
 courseVars[4] = C4;
 numLevels[4] = 5;
+numSheep[4] = 30;
 </string>
           </argument>
         </arguments>

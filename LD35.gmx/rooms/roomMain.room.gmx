@@ -51,6 +51,7 @@
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
+    <instance objName="objCourseInfo" x="67" y="3" name="inst_2B0C795B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDog" x="256" y="256" name="inst_05B8B4B4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGameControl" x="0" y="0" name="inst_4D66F1DA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCloudGenerator" x="799" y="350" name="inst_C23F1107" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -60,7 +61,6 @@
     <instance objName="objBirdSpawner" x="772" y="15" name="inst_AF760BA7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopwatch" x="458" y="519" name="inst_64BC80C7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSprintMeter" x="458" y="519" name="inst_CC303647" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCourseInfo" x="67" y="3" name="inst_2B0C795B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBucky" x="633" y="486" name="inst_0BA55B51" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>

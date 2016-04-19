@@ -1285,9 +1285,9 @@ var newy = phy_position_y + phy_speed_y;
 
 
 //if (newy &gt;= 320) {
-  if (newx &lt; 35) {
+  if (newx &lt; 40) {
     phy_speed_x = 0;
-    phy_position_x = 35;
+    phy_position_x = 40;
   } else if (newx &gt; 760) {
     phy_speed_x = 0;
     phy_position_x = 760;

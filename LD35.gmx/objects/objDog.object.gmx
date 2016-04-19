@@ -259,9 +259,9 @@ if (newx &lt; 0) {
   phy_position_x = room_width;
 }
 
-if (newy &lt; 78 ) {
+if (newy &lt; 68 ) {
   phy_speed_y = 0;
-  phy_position_y = 78
+  phy_position_y = 68
 } else if (newy &gt; 465) {
   phy_speed_y = 0;
   phy_position_y = 465;

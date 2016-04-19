@@ -214,9 +214,9 @@
     <object>objects\objSignPost</object>
     <object>objects\objLoosePage</object>
     <object>objects\objStopwatch</object>
+    <object>objects\objLevelSelectControl</object>
     <object>objects\objSprintMeter</object>
     <object>objects\objLevelSelecter</object>
-    <object>objects\objLevelSelectControl</object>
     <object>objects\objCourseInfo</object>
     <object>objects\objLevelSelectTitle</object>
     <object>objects\objBucky</object>
